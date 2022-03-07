@@ -7,11 +7,14 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 MAIN_FILES = megaphone
 
 SRCS = $(addsuffix .cpp, $(MAIN_FILES))
-
 OBJS = $(addsuffix .o, $(MAIN_FILES))
+
+CR_LIB := -L ${shell brew --prefix criterion}/lib -lcriterion
+CR_INCLUDE := -I ${shell brew --prefix criterion}/include/
 
 GREEN = \033[0;32m
 RED = \033[0;31m
+ORANGE = \033[0;33m
 RESET = \033[0m
 
 all: $(NAME)
@@ -33,8 +36,16 @@ clean:
 fclean: clean
 	@echo "$(RESET)Removing $(NAME)"
 	@${RM} $(NAME)
+	@${RM} test
 	@echo "$(RED)fclean DONE$(RESET)"
+
+test: ${NAME}
+	@echo "\n$(ORANGE)$(NAME) RUN TEST$(RESET)"
+	@c++ -o test *.cpp ${CR_LIB} ${CR_INCLUDE} -std=c++11 -D TEST
+	@./test
+	@make fclean > /dev/null
+	@echo "$(ORANGE)DONE$(RESET)"
 
 re: fclean all
 
-.PHONY:	all clean fclean re bonus
+.PHONY:	all clean fclean re
