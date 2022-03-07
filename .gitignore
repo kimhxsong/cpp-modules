@@ -33,3 +33,6 @@
 
 # Jetbrains
 .idea/
+
+# Subjects
+*.pdf
