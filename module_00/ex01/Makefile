@@ -1,6 +1,6 @@
 NAME = poby
 CC = c++
-RM = rm -r
+RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
 ifdef TEST
