@@ -1,20 +1,25 @@
-NAME = eightact
-CC = clang++
-RM = rm -rf
-INCLUDES = -I./includes/
+NAME = poby
+CC = c++
+RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
-MAIN_FILES = eightact
+ifdef TEST
+	CFLAGS += -g3
+endif
 
-SRCS = $(addsuffix .cpp, $(MAIN_FILES))
+FILENAMES = main \
+			PhoneBook \
+			PhoneContact
 
-OBJS = $(addsuffix .o, $(MAIN_FILES))
+SRCS = $(addsuffix .cpp, $(FILENAMES))
+OBJS = $(addsuffix .o, $(FILENAMES))
 
 GREEN = \033[0;32m
 RED = \033[0;31m
 RESET = \033[0m
 
-all: $(NAME)
+.PHONY:	all
+all:	$(NAME)
 
 ${NAME}: ${OBJS}
 	@echo "$(GREEN)$(NAME) START$(RESET)"
@@ -22,19 +27,20 @@ ${NAME}: ${OBJS}
 	@${CC} ${CFLAGS} ${INCLUDES} ${OBJS} -o ${NAME}
 	@echo "$(GREEN)DONE$(RESET)"
 
-${OBJS}: ${SRCS}
-	@${CC} ${CFLAGS} ${INCLUDES} -c ${SRCS}
+%.o: %.cpp
+	$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
 
+.PHONY:	clean
 clean:
 	@echo "$(RESET)Cleaning your .o files$(RESET)"
 	@${RM} $(OBJS)
 	@echo "$(RED)clean DONE$(RESET)"
 
-fclean: clean
+.PHONY:	fclean
+fclean:	clean
 	@echo "$(RESET)Removing $(NAME)"
 	@${RM} $(NAME)
 	@echo "$(RED)fclean DONE$(RESET)"
 
-re: fclean all
-
-.PHONY:	all clean fclean re bonus
+.PHONY:	re
+re:		fclean all

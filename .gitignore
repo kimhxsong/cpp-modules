@@ -36,3 +36,10 @@
 
 # Subjects
 *.pdf
+
+# Obsidian
+.obsidian/
+
+# Misc
+*.DS_Store/
+.vscode/
