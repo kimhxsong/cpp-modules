@@ -1,13 +1,9 @@
-//
-// Copyright 2022 Hyeonsong Kim
-//
 #include <iostream>
-
 #include "Fixed.hpp"
 
-int main(void) {
+int main( void ) {
   Fixed a;
-  Fixed b(a);
+  Fixed b( a );
   Fixed c;
 
   c = b;

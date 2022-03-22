@@ -1,24 +1,33 @@
-#ifndef FIXED_HPP
-# define FIXED_HPP
+//
+// Copyright 2022 Hyeonsong Kim
+//
+#ifndef MODULE_02_EX01_FIXED_HPP_
+#define MODULE_02_EX01_FIXED_HPP_
 
-# include <iostream>
-# include <string>
+#include <ostream>
 
-class Fixed
-{
+class Fixed {
+ public:
+  Fixed();
+  Fixed(const Fixed& other);
+  explicit Fixed(const int i);
+  explicit Fixed(const float f);
+  ~Fixed();
 
-	public:
+  Fixed&  operator=(const Fixed& other);
 
-		Fixed();
-		Fixed( Fixed const & src );
-		~Fixed();
+  int     getRawBits() const;
+  int     getRawBits(const Fixed& other) const;
+  void    setRawBits(int const raw);
 
-		Fixed &		operator=( Fixed const & rhs );
+  float   toFloat(void) const;
+  int     toInt(void) const;
 
-	private:
-
+ private:
+  static const int  fractional_;
+  int  raw_;
 };
 
-std::ostream &			operator<<( std::ostream & o, Fixed const & i );
+std::ostream& operator<<(std::ostream &output, const Fixed &src);
 
-#endif /* *********************************************************** FIXED_H */
+#endif  // MODULE_02_EX01_FIXED_HPP_

@@ -1,55 +1,38 @@
+//
+// Copyright 2022 Hyeonsong Kim
+//
 #include "Fixed.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
+#include <iostream>
+
+const int Fixed::_kFractional = 8;
 
 Fixed::Fixed()
-{
+    : raw_(0) {
+  std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed( const Fixed & src )
-{
+Fixed::Fixed(const Fixed& other) {
+  std::cout << "Copy constructor called" << std::endl;
+  *this = other;
 }
 
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
-
-Fixed::~Fixed()
-{
+Fixed::~Fixed() {
+  std::cout << "Desctructor called" << std::endl;
 }
 
-
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
-
-Fixed &				Fixed::operator=( Fixed const & rhs )
-{
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
-	return *this;
+Fixed&  Fixed::operator=(const Fixed& other) {
+  std::cout << "Assignation operator called" << std::endl;
+  raw_ = other.raw_;
+  return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, Fixed const & i )
-{
-	//o << "Value = " << i.getValue();
-	return o;
+int Fixed::getRawBits() const {
+  std::cout << "getRawBits member function called" << std::endl;
+  return raw_;
 }
 
-
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
-
-/*
-** --------------------------------- ACCESSOR ---------------------------------
-*/
-
-
-/* ************************************************************************** */
+void  Fixed::setRawBits(const int raw) {
+  std::cout << "setRawBits member function called" << std::endl;
+  raw_ = raw;
+}
