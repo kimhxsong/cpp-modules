@@ -1,11 +1,6 @@
-//
-// Copyright 2022 Hyeonsong Kim
-//
-#include "Fixed.hpp"
+#include "Fixed.h"
 
 #include <iostream>
-
-const int Fixed::_kFractional = 8;
 
 Fixed::Fixed()
     : raw_(0) {

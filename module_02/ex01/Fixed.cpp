@@ -1,12 +1,8 @@
-//
-// Copyright 2022 Hyeonsong Kim
-//
-#include "Fixed.hpp"
-#include <ostream>
-#include <iostream>
-#include <cmath>
+#include "Fixed.h"
 
-const int Fixed::fractional_ = 8;
+#include <cmath>
+#include <iostream>
+#include <ostream>
 
 Fixed::Fixed()
     : raw_(0) {
@@ -20,22 +16,16 @@ Fixed::Fixed(const Fixed& other) {
 
 Fixed::Fixed(const int i) {
   std::cout << "parameterized constructor called" << std::endl;
-  raw_ = i << fractional_;
+  raw_ = i << kFractional_;
 }
 
 Fixed::Fixed(const float f) {
   std::cout << "parameterized constructor called" << std::endl;
-  raw_ = roundf(f * (0b1 << fractional_));
+  raw_ = roundf(f * (0b1 << kFractional_));
 }
 
 Fixed::~Fixed() {
   std::cout << "Desctructor called" << std::endl;
-}
-
-Fixed&  Fixed::operator=(const Fixed& other) {
-  std::cout << "Assignation operator called" << std::endl;
-  raw_ = other.raw_;
-  return *this;
 }
 
 int Fixed::getRawBits() const {
@@ -49,11 +39,11 @@ void  Fixed::setRawBits(const int raw) {
 }
 
 float Fixed::toFloat(void) const {
-  return static_cast<float>(getRawBits()) / (0b1 << fractional_);
+  return static_cast<float>(getRawBits()) / (0b1 << kFractional_);
 }
 
 int Fixed::toInt(void) const {
-  return toFloat();
+  return (getRawBits() + (0b1 << (kFractional_ - 1))) >> kFractional_;
 }
 
 std::ostream& operator<<(std::ostream &output, const Fixed& src) {

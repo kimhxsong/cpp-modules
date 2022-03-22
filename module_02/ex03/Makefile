@@ -1,17 +1,7 @@
-NAME = prog00
+NAME = prog03
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
-
-#ifdef TEST
-		$(CFLAGS) += -g3
-#endif
-
-# INCLUDES = -I include/INCLUDE_PATH
-
-# LIBS = -L lib/LIB_PATH
-
-# EXTERNAL_LIB = EXITERNAL_LIB_PATH
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 BASENAMES = main Fixed
 
@@ -25,9 +15,6 @@ all:	$(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
 		@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
-
-# $(EXTERNAL_LIB):
-# @make -C lib/LIB_PATH
 
 $(OBJDIR)/%.o: %.cpp
 		@$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@

@@ -1,9 +1,6 @@
-//
-// Copyright 2022 Hyeonsong Kim
-//
 #include <iostream>
 
-#include "Fixed.hpp"
+#include "Fixed.h"
 
 int main(void) {
   Fixed a;
