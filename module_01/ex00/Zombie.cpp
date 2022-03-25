@@ -1,18 +1,16 @@
-#include <iostream>
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name)
-{
-	mName = name;
-	std::cout << name << "좀비 생성!\n";
+#include <iostream>
+
+Zombie::Zombie(std::string name) {
+  name_ = name;
+  std::cout << name << ": Contructor calld\n";
 }
 
-Zombie::~Zombie(void)
-{
-	std::cout << mName << " 좀비 소멸!\n";
+Zombie::~Zombie() {
+  std::cout << name_ << ": Destructor called\n";
 }
 
-void	Zombie::announce(void)
-{
-	std::cout << mName << " BraiiiiiiinnnzzzZ...\n";
+void Zombie::announce(void) {
+  std::cout << name_ << ": BraiiiiiiinnnzzzZ...\n";
 }

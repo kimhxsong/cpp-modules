@@ -1,10 +1,10 @@
 NAME = TARGET_NAME
 
 CC = COMPILER
-CFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror
 
 #ifdef TEST
-		$(CFLAGS) += -g3
+		$(CXXFLAGS) += -g3
 #endif
 
 INCLUDES = -I include/INCLUDE_PATH
@@ -24,13 +24,13 @@ OBJS = $(addsuffix .o, $(BASENAMES))
 all:	$(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
-		@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+		@$(CC) $(CXXFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
 
 $(EXTERNAL_LIB):
 		@make -C lib/LIB_PATH
 
 $(OBJDIR)/%.o: %.cpp
-		@$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
+		@$(CC) $(INCLUDES) $(CXXFLAGS) -c $< -o $@
 
 $(OBJS): | $(OBJDIR)
 $(OBJDIR):

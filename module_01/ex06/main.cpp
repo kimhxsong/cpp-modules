@@ -1,19 +1,17 @@
 #include <iostream>
 #include <string>
-#include "Karen.hpp"
 
-int	main(int argc, char *argv[])
-{
-	if (argc != 2) {
-		if (argc == 1) {
-			std::cout << "too few arguments\n";
-		} else {
-			std::cout << "too many arguments\n";
-		}
-		return (0);
-	}
-	std::string	logLevel = argv[1];
-	Karen		karen;
-	karen.filter(logLevel);
-	return (0);
+#include "Harl.hpp"
+
+// harlFilter
+int main(int argc, char *argv[]) {
+  if (argc != 2) {
+    std::cout <<
+      "Usage: ./harlFilter [\"DEBUG\" | \"INFO\" | \"WARNING\" | \"ERROR\"]\n";
+    return 1;
+  }
+  const std::string log_level(argv[1]);
+  Harl harl;
+  harl.filter(log_level);
+  return (0);
 }

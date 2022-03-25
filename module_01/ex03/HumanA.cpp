@@ -1,21 +1,20 @@
-#include <string>
 #include "HumanA.hpp"
 
+#include <iostream>
+#include <string>
+
+#include "Weapon.hpp"
+
 HumanA::HumanA(std::string name, Weapon &weapon)
-	: mName(name)
-	, mWeapon(weapon) {}
+  : name_(name),
+    weapon_(weapon) {}
 
-HumanA::~HumanA(void) {}
+HumanA::~HumanA() {}
 
-
-void	HumanA::setWeapon(Weapon &weapon)
-{
-	mWeapon = weapon;
+void HumanA::setWeapon(Weapon &weapon) {
+  weapon_ = weapon;
 }
 
-void	HumanA::attack(void)
-{
-	std::cout
-		<< mName << "attacks with his"
-		<< mWeapon.getType() << std::endl;
+void HumanA::attack() {
+  std::cout << name_ << " attacks with his " << weapon_.getType() << '\n';
 }

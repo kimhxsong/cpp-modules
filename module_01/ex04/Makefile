@@ -1,23 +1,23 @@
-NAME = prog03
+NAME = ft_sed
 
 CC = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-BASENAMES = main Fixed
+BASENAMES = main
 
 SRCS = $(addsuffix .cpp, $(BASENAMES))
 
-OBJDIR := obj
-OBJS = $(addprefix obj/, $(addsuffix .o, $(BASENAMES)))
+OBJDIR := ./obj
+OBJS = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(BASENAMES)))
 
 .PHONY:	all
 all:	$(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
-		@$(CC) $(CXXFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+		@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
 
 $(OBJDIR)/%.o: %.cpp
-		@$(CC) $(INCLUDES) $(CXXFLAGS) -c $< -o $@
+		@$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
 
 $(OBJS): | $(OBJDIR)
 $(OBJDIR):

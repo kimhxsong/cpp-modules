@@ -1,7 +1,7 @@
 NAME = prog01
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 BASENAMES = main Fixed
 
@@ -14,10 +14,10 @@ OBJS = $(addprefix obj/, $(addsuffix .o, $(BASENAMES)))
 all:	$(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
-		@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+		@$(CC) $(CXXFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
 
 $(OBJDIR)/%.o: %.cpp
-		@$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
+		@$(CC) $(INCLUDES) $(CXXFLAGS) -c $< -o $@
 
 $(OBJS): | $(OBJDIR)
 $(OBJDIR):

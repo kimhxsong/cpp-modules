@@ -1,6 +1,6 @@
 NAME = megaphone
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 BASENAME = megaphone
 
@@ -20,11 +20,11 @@ all: $(NAME)
 ${NAME}: ${OBJS}
 	@echo "$(GREEN)$(NAME) START$(RESET)"
 	@echo "$(RESET)Compiling ${NAME} to root."
-	@${CC} ${CFLAGS} ${INCLUDES} ${OBJS} -o ${NAME}
+	@${CC} ${CXXFLAGS} ${INCLUDES} ${OBJS} -o ${NAME}
 	@echo "$(GREEN)DONE$(RESET)"
 
 ${OBJS}: ${SRCS}
-	@${CC} ${CFLAGS} ${INCLUDES} -c ${SRCS}
+	@${CC} ${CXXFLAGS} ${INCLUDES} -c ${SRCS}
 
 clean:
 	@echo "$(RESET)Cleaning your .o files$(RESET)"
