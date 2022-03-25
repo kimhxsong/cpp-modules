@@ -1,9 +1,11 @@
-NAME = boocrap
+NAME = tests
 
 CC = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-BASENAMES = main PhoneBook PhoneContact
+INCLUDES = -I include/INCLUDE_PATH
+
+BASENAMES = tests Account
 
 SRCS = $(addsuffix .cpp, $(BASENAMES))
 
@@ -15,6 +17,7 @@ all:	$(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
 		@$(CC) $(CXXFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+		sh test.sh
 
 $(OBJDIR)/%.o: %.cpp
 		@$(CC) $(INCLUDES) $(CXXFLAGS) -c $< -o $@
@@ -25,7 +28,7 @@ $(OBJDIR):
 
 .PHONY:	clean
 clean:
-		@$(RM) -r $(OBJDIR)
+		@$(RM) -r $(OBJDIR) result.txt
 
 .PHONY:	fclean
 fclean: clean

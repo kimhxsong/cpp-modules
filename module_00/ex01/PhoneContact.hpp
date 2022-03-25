@@ -1,7 +1,3 @@
-//
-// Created by Hyeonsong Kim on 3/9/22.
-//
-
 #ifndef PHONECONTACT_HPP
 #define PHONECONTACT_HPP
 
@@ -12,28 +8,28 @@
 using std::string;
 
 class PhoneContact {
-public:
-    PhoneContact(void);
-    ~PhoneContact(void);
+ public:
+  PhoneContact();
+  ~PhoneContact();
 
-    void    setContact(void);
-    void    setFirstName(void);
-    string  getFirstName(void);
-    void    setLastName(void);
-    string  getLastName(void);
-    void    setNickname(void);
-    string  getNickname(void);
-    void    setPhoneNumber(void);
-    string  getPhoneNumber(void);
-    void    setDarkestSecret(void);
-    string  getDarkestSecret(void);
+  string getFirstName();
+  string getNickname();
+  string getLastName();
+  string getPhoneNumber();
+  string getDarkestSecret();
 
-private:
-    string  mFirstName;
-    string  mLastName;
-    string  mNickname;
-    string  mPhoneNumber;
-    string  mDarkestSecret;
+  void setFirstName();
+  void setLastName();
+  void setNickname();
+  void setPhoneNumber();
+  void setDarkestSecret();
+
+ private:
+  string first_name_;
+  string last_name_;
+  string nickname_;
+  string phone_number_;
+  string darkest_secret_;
 };
 
-#endif //PHONECONTACT_HPP
+#endif  // PHONECONTACT_HPP

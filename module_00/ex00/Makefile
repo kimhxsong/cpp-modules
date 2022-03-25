@@ -1,13 +1,11 @@
 NAME = megaphone
 CC = c++
-RM = rm -rf
-INCLUDES = -I./includes/
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-MAIN_FILES = megaphone
+BASENAME = megaphone
 
-SRCS = $(addsuffix .cpp, $(MAIN_FILES))
-OBJS = $(addsuffix .o, $(MAIN_FILES))
+SRCS = $(addsuffix .cpp, $(BASENAME))
+OBJS = $(addsuffix .o, $(BASENAME))
 
 CR_LIB := -L ${shell brew --prefix criterion}/lib -lcriterion
 CR_INCLUDE := -I ${shell brew --prefix criterion}/include/
@@ -48,4 +46,4 @@ test: ${NAME}
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re test

@@ -1,100 +1,77 @@
-//
-// Created by Hyeonsong Kim on 3/9/22.
-//
-#include <iostream>
 #include "PhoneContact.hpp"
 
-PhoneContact::PhoneContact(void)
-    : mFirstName()
-    , mLastName()
-    , mNickname()
-    , mPhoneNumber()
-    , mDarkestSecret()
-{};
+#include <iostream>
 
-PhoneContact::~PhoneContact(void) {};
+PhoneContact::PhoneContact()
+  : first_name_(),
+    last_name_(),
+    nickname_(),
+    phone_number_(),
+    darkest_secret_() {}
 
-void    PhoneContact::setFirstName(void)
-{
-    std::cout << "First Name: ";
-    std::getline(std::cin, mFirstName);
-    if (std::cin.eof()) {
-        std::cout << "EOF\n";
-        std::exit(0);
-    }
+PhoneContact::~PhoneContact() {}
+
+std::string PhoneContact::getFirstName() {
+  return first_name_;
 }
 
-std::string  PhoneContact::getFirstName(void)
-{
-  return (mFirstName);
+std::string PhoneContact::getLastName() {
+  return last_name_;
 }
 
-void    PhoneContact::setLastName(void)
-{
-    std::cout << "Last Name: ";
-    std::getline(std::cin, mLastName);
-    if (std::cin.eof()) {
-        std::cout << "EOF\n";
-        std::exit(0);
-    }
+std::string  PhoneContact::getNickname() {
+  return nickname_;
 }
 
-std::string  PhoneContact::getLastName(void)
-{
-  return (mLastName);
+void PhoneContact::setFirstName() {
+  std::cout << "First Name: ";
+  std::getline(std::cin, first_name_);
+  if (std::cin.eof()) {
+    std::cout << "EOF\n";
+    std::exit(0);
+  }
 }
 
-void    PhoneContact::setNickname(void)
-{
-    std::cout << "Nickname: ";
-    std::getline(std::cin, mNickname);
-    if (std::cin.eof()) {
-        std::cout << "EOF\n";
-        std::exit(0);
-    }
+void PhoneContact::setLastName() {
+  std::cout << "Last Name: ";
+  std::getline(std::cin, last_name_);
+  if (std::cin.eof()) {
+    std::cout << "EOF\n";
+    std::exit(0);
+  }
 }
 
-std::string  PhoneContact::getNickname(void)
-{
-  return (mNickname);
+std::string PhoneContact::getPhoneNumber() {
+  return phone_number_;
 }
 
-void    PhoneContact::setPhoneNumber(void)
-{
-    std::cout << "Phone Number: ";
-    std::getline(std::cin, mPhoneNumber);
-    if (std::cin.eof()) {
-        std::cout << "EOF\n";
-        std::exit(0);
-    }
+std::string PhoneContact::getDarkestSecret() {
+  return darkest_secret_;
 }
 
-std::string PhoneContact::getPhoneNumber(void)
-{
-  return (mPhoneNumber);
+void PhoneContact::setNickname() {
+  std::cout << "Nickname: ";
+  std::getline(std::cin, nickname_);
+  if (std::cin.eof()) {
+    std::cout << "EOF\n";
+    std::exit(0);
+  }
 }
 
-void    PhoneContact::setDarkestSecret(void)
-{
-    std::cout << "Darkest Secret: ";
-    std::getline(std::cin, mDarkestSecret);
-    if (std::cin.eof()) {
-        std::cout << "EOF\n";
-        std::exit(0);
-    }
+void PhoneContact::setPhoneNumber() {
+  std::cout << "Phone Number: ";
+  std::getline(std::cin, phone_number_);
+  if (std::cin.eof()) {
+    std::cout << "EOF\n";
+    std::exit(0);
+  }
 }
 
-std::string PhoneContact::getDarkestSecret(void)
-{
-  return (mDarkestSecret);
-}
-
-
-void    PhoneContact::setContact(void)
-{
-  setFirstName();
-  setLastName();
-  setNickname();
-  setPhoneNumber();
-  setDarkestSecret();
+void PhoneContact::setDarkestSecret() {
+  std::cout << "Darkest Secret: ";
+  std::getline(std::cin, darkest_secret_);
+  if (std::cin.eof()) {
+    std::cout << "EOF\n";
+    std::exit(0);
+  }
 }
