@@ -1,9 +1,9 @@
-NAME = prog03
+NAME = bsp
 
 CC = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-BASENAMES = main Fixed
+BASENAMES = main Fixed Point bsp
 
 SRCS = $(addsuffix .cpp, $(BASENAMES))
 

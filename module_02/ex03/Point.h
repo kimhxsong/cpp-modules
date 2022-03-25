@@ -7,11 +7,18 @@ class Point {
  public:
   Point();
   Point(const Point& other);
+  Point(const Fixed& other_x, const Fixed& other_y);
   Point(const float fx, const float fy);
 
   ~Point();
 
   Point& operator=(const Point& other);
+
+  const Point operator+(const Point& other) const;
+  const Point operator-(const Point& other) const;
+
+  const Fixed& getX() const;
+  const Fixed& getY() const;
 
  private:
   const Fixed x;

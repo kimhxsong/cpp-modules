@@ -1,4 +1,4 @@
-NAME = prog02
+NAME = Fixed02
 
 CC = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g

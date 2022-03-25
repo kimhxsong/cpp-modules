@@ -65,25 +65,25 @@ bool Fixed::operator>=(const Fixed& other) const {
   return raw_ >= other.raw_;
 }
 
-Fixed Fixed::operator+(const Fixed& other) {
+const Fixed Fixed::operator+(const Fixed& other) const {
   Fixed result(*this);
   result.raw_ += other.raw_;
   return result;
 }
 
-Fixed Fixed::operator-(const Fixed& other) {
+const Fixed Fixed::operator-(const Fixed& other) const {
   Fixed result(*this);
   result.raw_ -= other.raw_;
   return result;
 }
 
-Fixed Fixed::operator*(const Fixed& other) {
+const Fixed Fixed::operator*(const Fixed& other) const {
   Fixed result(*this);
   result.raw_ = (raw_ * other.raw_) >> kFractional_;
   return result;
 }
 
-Fixed Fixed::operator/(const Fixed& other) {
+const Fixed Fixed::operator/(const Fixed& other) const {
   Fixed result(*this);
   result.raw_ = (raw_ * (0b1 << kFractional_)) / other.raw_;
   return result;

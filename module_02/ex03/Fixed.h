@@ -29,11 +29,11 @@ class Fixed {
   bool operator>(const Fixed& other) const;
   bool operator>=(const Fixed& other) const;
 
-  Fixed operator+(const Fixed& other);
-  Fixed operator-(const Fixed& other);
+  const Fixed operator+(const Fixed& other) const;
+  const Fixed operator-(const Fixed& other) const;
 
-  Fixed operator*(const Fixed& other);
-  Fixed operator/(const Fixed& other);
+  const Fixed operator*(const Fixed& other) const;
+  const Fixed operator/(const Fixed& other) const;
 
   Fixed operator++(int);
   Fixed operator--(int);

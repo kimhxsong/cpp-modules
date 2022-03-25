@@ -7,8 +7,9 @@ class Fixed {
  public:
   Fixed();
   Fixed(const Fixed& other);
-  Fixed(const int i);
-  Fixed(const float f);
+  explicit Fixed(const int i);
+  explicit Fixed(const float f);
+
   ~Fixed();
 
   Fixed& operator=(const Fixed& other);
