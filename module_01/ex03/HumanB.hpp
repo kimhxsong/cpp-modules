@@ -7,15 +7,15 @@
 
 class HumanB {
  public:
-  explicit HumanB(std::string name);
+  explicit HumanB(const std::string& name);
   ~HumanB();
 
   void setWeapon(Weapon &weapon);
   void attack();
 
  private:
-  std::string name_;
-  Weapon *weapon_;
+  const std::string& name_;
+  Weapon* weapon_;
 };
 
 #endif  // HUMANB_HPP_

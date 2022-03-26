@@ -4,11 +4,23 @@
 
 using std::string;
 
-int ft_sed(string &filename, string &s1, string &s2) {
+int ft_sed(const string &filename, const string &s1, const string &s2) {
   // setIFS
+
+  if (filename.empty() == true) {
+    std::cout << "Error: filename is empty\n";
+    return 1;
+  }
+
+  if (s1.empty() == true) {
+    std::cout << "Error: string1 is empty\n";
+    return 1;
+  }
+
   std::ifstream ifs(filename);
   if (ifs.is_open() == false) {
     std::cout << "Error\n";
+    std::perror(filename.c_str());
     return 1;
   }
 
@@ -16,6 +28,7 @@ int ft_sed(string &filename, string &s1, string &s2) {
   std::ofstream ofs(filename + ".replace");
   if (ofs.is_open() == false) {
     std::cout << "Error\n";
+    std::perror("ofstream");
     ifs.close();
     return 1;
   }
@@ -50,10 +63,11 @@ int ft_sed(string &filename, string &s1, string &s2) {
         replaced_line += s2;
         pos += s1.length();
       }
-      ofs << replaced_line << '\n';
+      ofs << replaced_line;
       if (ifs.eof() == true) {
         break;
       }
+      ofs << '\n';
     }
   }
   // ~Sed

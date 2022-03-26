@@ -16,14 +16,14 @@ Harl::Harl() {
 
 Harl::~Harl() {}
 
-int Harl::findLogLevel(std::string &level) {
+int Harl::findLogLevel(const std::string &level) {
   for (int i = 0; i < 4; ++i) {
     if (level == fn_table_[i].level) { return (i); }
   }
   return (-1);
 }
 
-void Harl::filter(std::string level) {
+void Harl::filter(const std::string& level) {
   const int log_level = findLogLevel(level);
   switch (log_level) {
   case LEVEL_DEBUG:

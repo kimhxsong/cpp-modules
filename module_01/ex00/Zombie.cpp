@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Zombie::Zombie(std::string name) {
+Zombie::Zombie(const std::string& name) {
   name_ = name;
   std::cout << name << ": Contructor calld\n";
 }

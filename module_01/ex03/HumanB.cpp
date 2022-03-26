@@ -5,7 +5,7 @@
 
 #include "Weapon.hpp"
 
-HumanB::HumanB(std::string name)
+HumanB::HumanB(const std::string& name)
   : name_(name) {
     weapon_ = NULL;
 }

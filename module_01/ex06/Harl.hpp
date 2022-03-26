@@ -20,15 +20,15 @@ class Harl {
   Harl();
   ~Harl();
 
-  void complain(std::string level);
-  void filter(std::string level);
+  void complain(const std::string& level);
+  void filter(const std::string& level);
 
  private:
   void debug(void);
   void info(void);
   void warning(void);
   void error(void);
-  int findLogLevel(std::string &level);
+  int findLogLevel(const std::string &level);
 
   Harl_t fn_table_[4];
 };

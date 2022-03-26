@@ -10,6 +10,6 @@ int main(void) {
     std::cout << '[' << i << ']';
     zombies[i].announce();
   }
-  delete [] zombies;
+  delete[] zombies;
   return 0;
 }

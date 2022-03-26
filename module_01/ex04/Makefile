@@ -23,9 +23,14 @@ $(OBJS): | $(OBJDIR)
 $(OBJDIR):
 		@mkdir $(OBJDIR)
 
+.PHONY:	test
+test:
+		@./test.sh &2> /dev/null
+
 .PHONY:	clean
 clean:
 		@$(RM) -r $(OBJDIR)
+		@rm -f diff* copy* test.log
 
 .PHONY:	fclean
 fclean: clean
