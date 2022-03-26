@@ -1,32 +1,30 @@
-//
-// Created by Hyeonsong Kim on 3/9/22.
-//
-
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
 #include "PhoneContact.hpp"
 
-class PhoneBook
-{
-public:
-	PhoneBook(void);
-	~PhoneBook(void);
-	void  addContact(void);
-	void  exitProgram(void);
-	void  runCommand(const string &userInput);
-	void  runProgram(void);
-	void  searchContact(void);
-	void  displayContactTable(void);
-	void  displayContactTableField(string fieldString);
-	void  displayContactTableRow(size_t index, PhoneContact &contact);
-	void  displayContactTableHeader(void);
+class PhoneBook {
+ public:
+  PhoneBook();
+  ~PhoneBook();
 
-private:
-	PhoneContact  mContacts[8];
-	size_t        mIndex;
-	size_t        mAmount;
-	int           mIsExited;
+  void  setContacts();
+  void  exitProgram();
+  void  runCommand(const string &userInput);
+  void  runProgram();
+  void  searchContact();
+  void  printContact();
+  void  displayContactTable();
+
+ private:
+  void  displayContactTableField(string field_string);
+  void  displayContactTableRow(int index, PhoneContact &contact);
+  void  displayContactTableHeader();
+
+  PhoneContact contacts_[8];
+  int index_;
+  int amount_;
+  int is_exited_;
 };
 
-#endif //PHONEBOOK_HPP
+#endif  // PHONEBOOK_HPP

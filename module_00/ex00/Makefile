@@ -1,13 +1,11 @@
 NAME = megaphone
 CC = c++
-RM = rm -rf
-INCLUDES = -I./includes/
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-MAIN_FILES = megaphone
+BASENAME = megaphone
 
-SRCS = $(addsuffix .cpp, $(MAIN_FILES))
-OBJS = $(addsuffix .o, $(MAIN_FILES))
+SRCS = $(addsuffix .cpp, $(BASENAME))
+OBJS = $(addsuffix .o, $(BASENAME))
 
 CR_LIB := -L ${shell brew --prefix criterion}/lib -lcriterion
 CR_INCLUDE := -I ${shell brew --prefix criterion}/include/
@@ -22,11 +20,11 @@ all: $(NAME)
 ${NAME}: ${OBJS}
 	@echo "$(GREEN)$(NAME) START$(RESET)"
 	@echo "$(RESET)Compiling ${NAME} to root."
-	@${CC} ${CFLAGS} ${INCLUDES} ${OBJS} -o ${NAME}
+	@${CC} ${CXXFLAGS} ${INCLUDES} ${OBJS} -o ${NAME}
 	@echo "$(GREEN)DONE$(RESET)"
 
 ${OBJS}: ${SRCS}
-	@${CC} ${CFLAGS} ${INCLUDES} -c ${SRCS}
+	@${CC} ${CXXFLAGS} ${INCLUDES} -c ${SRCS}
 
 clean:
 	@echo "$(RESET)Cleaning your .o files$(RESET)"
@@ -48,4 +46,4 @@ test: ${NAME}
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re test

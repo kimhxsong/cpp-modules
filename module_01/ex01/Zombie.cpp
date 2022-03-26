@@ -1,33 +1,29 @@
-#include <iostream>
-#include <string>
 #include "Zombie.hpp"
 
+#include <iostream>
+#include <string>
+
 Zombie::Zombie() {
-	std::cout << "좀비 할당!\n";
-};
-
-Zombie::Zombie(std::string name)
-{
-	mName = name;
-	std::cout << name << "좀비 생성!\n";
+  std::cout << "Defalut Constructor Called!\n";
 }
 
-Zombie::~Zombie(void)
-{
-	std::cout << mName << " 좀비 소멸!\n";
+Zombie::Zombie(const std::string& name)
+  : name_(name) {
+  std::cout << name << ": Contructor Called!\n";
 }
 
-void	Zombie::setName(std::string name)
-{
-	mName = name;
+Zombie::~Zombie() {
+  std::cout << name_ << ": Destructor Called!\n";
 }
 
-std::string	Zombie::getName(void)
-{
-	return (mName);
+void Zombie::setName(const std::string& name) {
+  name_ = name;
 }
 
-void	Zombie::announce(void)
-{
-	std::cout << getName() << " 으갸갸...갸갸각!\n";
+std::string Zombie::getName() {
+  return name_;
+}
+
+void Zombie::announce() {
+  std::cout << getName() << ":  BraiiiiiiinnnzzzZ...\n";
 }

@@ -1,46 +1,35 @@
-NAME = poby
+NAME = boocrap
+
 CC = c++
-RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-ifdef TEST
-	CFLAGS += -g3
-endif
+BASENAMES = main PhoneBook PhoneContact
 
-FILENAMES = main \
-			PhoneBook \
-			PhoneContact
+SRCS = $(addsuffix .cpp, $(BASENAMES))
 
-SRCS = $(addsuffix .cpp, $(FILENAMES))
-OBJS = $(addsuffix .o, $(FILENAMES))
-
-GREEN = \033[0;32m
-RED = \033[0;31m
-RESET = \033[0m
+OBJDIR := ./obj
+OBJS = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(BASENAMES)))
 
 .PHONY:	all
 all:	$(NAME)
 
-${NAME}: ${OBJS}
-	@echo "$(GREEN)$(NAME) START$(RESET)"
-	@echo "$(RESET)Compiling ${NAME} to root."
-	@${CC} ${CFLAGS} ${INCLUDES} ${OBJS} -o ${NAME}
-	@echo "$(GREEN)DONE$(RESET)"
+$(NAME): $(OBJDIR) $(OBJS)
+		@$(CC) $(CXXFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
 
-%.o: %.cpp
-	$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
+$(OBJDIR)/%.o: %.cpp
+		@$(CC) $(INCLUDES) $(CXXFLAGS) -c $< -o $@
+
+$(OBJS): | $(OBJDIR)
+$(OBJDIR):
+		@mkdir $(OBJDIR)
 
 .PHONY:	clean
 clean:
-	@echo "$(RESET)Cleaning your .o files$(RESET)"
-	@${RM} $(OBJS)
-	@echo "$(RED)clean DONE$(RESET)"
+		@$(RM) -r $(OBJDIR)
 
 .PHONY:	fclean
-fclean:	clean
-	@echo "$(RESET)Removing $(NAME)"
-	@${RM} $(NAME)
-	@echo "$(RED)fclean DONE$(RESET)"
+fclean: clean
+		@$(RM) $(NAME)
 
 .PHONY:	re
 re:		fclean all
