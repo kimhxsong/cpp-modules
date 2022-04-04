@@ -3,16 +3,20 @@
 #include <iostream>
 #include <string>
 
+ClapTrap::ClapTrap() {
+  std::cout << "ClapTrap Defalut Constructor Called\n";
+}
+
 ClapTrap::ClapTrap(const std::string& name)
-  : name_(name),
-    energy_point_(10),
+  : energy_point_(10),
     attack_damage_(0),
-    hit_point_(10) {
-  std::cout << "Constructor Called: " << name_ << '\n';
+    hit_point_(10),
+    name_(name) {
+  std::cout << "ClapTrap Constructor Called: " << name_ << '\n';
 }
 
 ClapTrap::~ClapTrap() {
-  std::cout << "Destructor Called: " << name_ << '\n';
+  std::cout << "ClapTrap Destructor Called: " << name_ << '\n';
 }
 
 const std::string& ClapTrap::get_name() {

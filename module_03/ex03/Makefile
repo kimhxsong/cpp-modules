@@ -5,7 +5,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 INCLUDES = -I include/
 
-BASENAMES = main ClapTrap
+BASENAMES = main ClapTrap ScavTrap FragTrap DiamondTrap
 
 SRCS = $(addsuffix .cpp, $(BASENAMES))
 
