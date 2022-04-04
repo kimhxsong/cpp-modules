@@ -5,6 +5,7 @@
 
 class ClapTrap {
  public:
+  ClapTrap();
   explicit ClapTrap(const std::string& name);
   ~ClapTrap();
 
@@ -22,12 +23,17 @@ class ClapTrap {
   void beRepaired(unsigned int amount);
 
   void displayInfo();
- 
- private:
-  const std::string name_;
+  bool isTrapBroken();
+  bool hasNoEnergy();
+
+ protected:
   unsigned int energy_point_;
   unsigned int attack_damage_;
   unsigned int hit_point_;
+
+ private:
+  std::string name_;
+
 };
 
 #endif  // CLAPTRAP_H_
