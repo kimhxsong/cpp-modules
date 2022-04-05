@@ -1,7 +1,7 @@
 NAME = ClapTrap
 
 CC = c++
-CXXFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98 -g
+CXXFLAGS = -Wall -Wextra -Werror -g -pedantic -std=c++98
 
 INCLUDES = -I include/
 
@@ -10,7 +10,7 @@ BASENAMES = main ClapTrap
 SRCS = $(addsuffix .cpp, $(BASENAMES))
 
 OBJDIR := ./obj
-OBJS = $(addsuffix .o, $(BASENAMES))
+OBJS = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(BASENAMES)))
 
 .PHONY:	all
 all:	$(NAME)
@@ -27,7 +27,7 @@ $(OBJDIR):
 
 .PHONY:	clean
 clean:
-		@$(RM) $(OBJS)
+		@$(RM) -r $(OBJDIR)
 
 .PHONY:	fclean
 fclean: clean

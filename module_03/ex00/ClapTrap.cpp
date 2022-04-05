@@ -8,7 +8,7 @@ ClapTrap::ClapTrap()
     energy_point_(0),
     attack_damage_(0),
     hit_point_(0) {
-  std::cout << "Default Constructor Called: " << name_ << '\n';
+  std::cout << "ClapTrap Default Constructor Called: " << name_ << '\n';
 }
 
 ClapTrap::ClapTrap(const std::string& name)
@@ -16,11 +16,11 @@ ClapTrap::ClapTrap(const std::string& name)
     energy_point_(10),
     attack_damage_(0),
     hit_point_(10) {
-  std::cout << "Parameterized Constructor Called: " << name_ << '\n';
+  std::cout << "ClapTrap Parameterized Constructor Called: " << name_ << '\n';
 }
 
 ClapTrap::~ClapTrap() {
-  std::cout << "Destructor Called: " << name_ << '\n';
+  std::cout << "ClapTrap Destructor Called: " << name_ << '\n';
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
@@ -60,14 +60,14 @@ void ClapTrap::set_hit_point(unsigned int hit_point) {
 }
 
 void ClapTrap::attack(const std::string& target) {
-  if (get_hit_point() == 0) {
+  if (isTrapBroken() == true) {
     std::cout << "ClapTrap " << get_name() <<
                  " is already completely broken, can't do anything\n";
     return;
   }
 
-  if (get_energy_point() == 0) {
-    std::cout << "ClapTrap " << get_name() <<
+  if (hasNoEnergy() == true) {
+   std::cout << "ClapTrap " << get_name() <<
                  " has not enough energy to attack\n";
     return;
   }
@@ -80,7 +80,7 @@ void ClapTrap::attack(const std::string& target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-  if (get_hit_point() == 0) {
+  if (isTrapBroken() == true) {
     std::cout << "ClapTrap " << get_name() <<
                  " is already completely broken\n";
     return;
@@ -99,13 +99,13 @@ void ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-  if (get_hit_point() == 0) {
+  if (isTrapBroken() == true) {
     std::cout << "ClapTrap " << get_name() <<
                  " is already completely broken. it can't be fixed\n";
     return;
   }
 
-  if (get_energy_point() == 0) {
+  if (hasNoEnergy() == true) {
     std::cout << "ClapTrap " << get_name() <<
                  " has not enough energy to be repaired\n";
     return;

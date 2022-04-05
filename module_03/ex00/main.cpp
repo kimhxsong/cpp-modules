@@ -3,7 +3,7 @@
 #include "ClapTrap.h"
 
 int main(void) {
-  std::cout << "TEST1\n\n";
+  std::cout << "== TEST1 ==\n\n";
   // HP CASE
   {
     std::cout << "STATEMENT ClapTrap clap(\"Base\");" << '\n';
@@ -39,7 +39,7 @@ int main(void) {
     clap.displayInfo();
   }
 
-  std::cout << "TEST2\n\n";
+  std::cout << "\n== TEST2 ==\n\n";
   // EP CASE
   {
     std::cout << "STATEMENT ClapTrap clap(\"Base\");" << '\n';
