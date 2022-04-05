@@ -26,67 +26,6 @@ FragTrap& FragTrap::operator=(const FragTrap& other) {
   return *this;
 }
 
-
-void FragTrap::attack(const std::string& target) {
-  if (isTrapBroken() == true) {
-    std::cout << "FragTrap " << get_name() <<
-                 " is already completely broken, can't do anything\n";
-    return;
-  }
-
-  if (get_energy_point() == 0) {
-    std::cout << "FragTrap " << get_name() <<
-                 " has not enough energy to attack\n";
-    return;
-  }
-
-  set_energy_point(get_energy_point() - 1);
-  std::cout << "FragTrap " << get_name() <<
-               " attacks " << target <<
-               ", causing " << get_attack_damage() <<
-               " points of damage!\n";
-}
-
-void FragTrap::takeDamage(unsigned int amount) {
-  if (isTrapBroken() == true) {
-    std::cout << "FragTrap " << get_name() <<
-                 " is already completely broken\n";
-    return;
-  }
-
-  if (get_hit_point() < amount) {
-    set_hit_point(0);
-  } else {
-    set_hit_point(get_hit_point() - amount);
-  }
-
-  std::cout << "FragTrap " << get_name() <<
-               " takes Damages " << amount <<
-               " and has " << get_hit_point() <<
-               " hit points.\n";
-}
-
-void FragTrap::beRepaired(unsigned int amount) {
-  if (isTrapBroken() == true) {
-    std::cout << "FragTrap " << get_name() <<
-                 " is already completely broken. it can't be fixed\n";
-    return;
-  }
-
-  if (get_energy_point() == 0) {
-    std::cout << "FragTrap " << get_name() <<
-                 " has not enough energy to be repaired\n";
-    return;
-  }
-
-  set_energy_point(get_energy_point() - 1);
-  set_hit_point(get_hit_point() + amount);
-  std::cout << "FragTrap " << get_name() <<
-               " is repaired " << amount <<
-               " and has " << get_hit_point() <<
-               " hit points.\n";
-}
-
 void FragTrap::highFiveGuys() {
   if (isTrapBroken() == true) {
     std::cout << "FragTrap " << get_name() <<

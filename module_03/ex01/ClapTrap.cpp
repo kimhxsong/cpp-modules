@@ -3,8 +3,12 @@
 #include <iostream>
 #include <string>
 
-ClapTrap::ClapTrap() {
-  std::cout << "ClapTrap Defalut Constructor Called\n";
+ClapTrap::ClapTrap()
+  : energy_point_(0),
+    attack_damage_(0),
+    hit_point_(0),
+    name_("Default") {
+  std::cout << "Default Constructor Called: " << name_ << '\n';
 }
 
 ClapTrap::ClapTrap(const std::string& name)
@@ -12,26 +16,26 @@ ClapTrap::ClapTrap(const std::string& name)
     attack_damage_(0),
     hit_point_(10),
     name_(name) {
-  std::cout << "ClapTrap Constructor Called: " << name_ << '\n';
+  std::cout << "Parameterized Constructor Called: " << name_ << '\n';
 }
 
 ClapTrap::~ClapTrap() {
-  std::cout << "ClapTrap Destructor Called: " << name_ << '\n';
+  std::cout << "Destructor Called: " << name_ << '\n';
 }
 
-const std::string& ClapTrap::get_name() {
+const std::string& ClapTrap::get_name() const {
   return name_;
 }
 
-unsigned int ClapTrap::get_energy_point() {
+unsigned int ClapTrap::get_energy_point() const {
   return energy_point_;
 }
 
-unsigned int ClapTrap::get_attack_damage() {
+unsigned int ClapTrap::get_attack_damage() const {
   return attack_damage_;
 }
 
-unsigned int ClapTrap::get_hit_point() {
+unsigned int ClapTrap::get_hit_point() const {
   return hit_point_;
 }
 

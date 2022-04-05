@@ -3,31 +3,47 @@
 #include <iostream>
 #include <string>
 
+ClapTrap::ClapTrap()
+  : name_("Default"),
+    energy_point_(0),
+    attack_damage_(0),
+    hit_point_(0) {
+  std::cout << "Default Constructor Called: " << name_ << '\n';
+}
+
 ClapTrap::ClapTrap(const std::string& name)
   : name_(name),
     energy_point_(10),
     attack_damage_(0),
     hit_point_(10) {
-  std::cout << "Constructor Called: " << name_ << '\n';
+  std::cout << "Parameterized Constructor Called: " << name_ << '\n';
 }
 
 ClapTrap::~ClapTrap() {
   std::cout << "Destructor Called: " << name_ << '\n';
 }
 
-const std::string& ClapTrap::get_name() {
+ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
+  name_ = other.name_;
+  energy_point_ = other.energy_point_;
+  attack_damage_ = other.attack_damage_;
+  hit_point_ = other.hit_point_;
+  return *this;
+}
+
+const std::string& ClapTrap::get_name() const {
   return name_;
 }
 
-unsigned int ClapTrap::get_energy_point() {
+unsigned int ClapTrap::get_energy_point() const {
   return energy_point_;
 }
 
-unsigned int ClapTrap::get_attack_damage() {
+unsigned int ClapTrap::get_attack_damage() const {
   return attack_damage_;
 }
 
-unsigned int ClapTrap::get_hit_point() {
+unsigned int ClapTrap::get_hit_point() const {
   return hit_point_;
 }
 
@@ -104,9 +120,16 @@ void ClapTrap::beRepaired(unsigned int amount) {
 }
 
 void ClapTrap::displayInfo() {
-  std::cout << "Name: " << get_name() <<
-               "Energy Point: " << get_energy_point() <<
-               "Attack Damage: " << get_attack_damage() <<
-               "Hit Point: " << get_hit_point() <<
-               '\n';
+  std::cout << "Name: " << get_name() << '\n' <<
+               "Energy Point: " << get_energy_point() << '\n' <<
+               "Attack Damage: " << get_attack_damage() << '\n' <<
+               "Hit Point: " << get_hit_point() << "\n\n";
+}
+
+bool ClapTrap::isTrapBroken() {
+  return (get_hit_point() == 0);
+}
+
+bool ClapTrap::hasNoEnergy() {
+  return (get_energy_point() == 0);
 }

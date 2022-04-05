@@ -115,10 +115,3 @@ void ClapTrap::displayInfo() {
                '\n';
 }
 
-bool ClapTrap::isTrapBroken() {
-  return get_hit_point() == 0;
-}
-
-bool ClapTrap::hasNoEnergy() {
-  return get_energy_point() == 0;
-}
