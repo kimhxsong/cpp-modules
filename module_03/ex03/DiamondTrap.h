@@ -13,11 +13,12 @@ class DiamondTrap
  public:
   DiamondTrap();
   explicit DiamondTrap(const std::string& name);
+
   ~DiamondTrap();
 
-  // void attack(const std::string& target);
-  // void takeDamage(unsigned int amount);
-  // void beRepaired(unsigned int amount);
+  DiamondTrap& operator=(const DiamondTrap& other);
+
+  const std::string& get_name() const;
 
   void whoAmI();
 

@@ -1,48 +1,59 @@
 #include <iostream>
 
 #include "ClapTrap.h"
-#include "ScavTrap.h"
 #include "FragTrap.h"
+#include "ScavTrap.h"
 #include "DiamondTrap.h"
 
+/*
+  ClapTrap
+  - Hit point (10)
+  - Energy points (10)
+  - Attack damage (0)
+
+  ScavTrap
+  - Hit point (100)
+  - Energy points (50)
+  - Attack damage (20)
+
+  FragTrap
+  - Hit point (100)
+  - Energy points (100)
+  - Attack damage (30)
+
+  DiamondTrap
+  - Hit point (100) // FragTrap
+  - Energy points (50) // ScavTrap
+  - Attack damage (30) // FragTrap
+*/
+
 int main(void) {
+  std::cout << "\n== TEST1 ==\n\n";
   {
-    ClapTrap clap("Base");
+    DiamondTrap diamond("diamond");
+    diamond.displayInfo();
 
-    clap.attack("target_0");
-    clap.takeDamage(3);
-    clap.beRepaired(3);
-  }
-
-  std::cout << std::endl;
-
-  {
-    ScavTrap scav("Derived1");
-
-    scav.attack("target_1");
-    scav.takeDamage(5);
-    scav.beRepaired(5);
-    scav.guardGate();
-  }
-
-  std::cout << std::endl;
-
-  {
-    FragTrap frag("Derived2");
-
-    frag.attack("target_2");
-    frag.takeDamage(5);
-    frag.beRepaired(5);
-    frag.highFiveGuys();
-  }
-
-  std::cout << std::endl;
-
-  {
-    DiamondTrap diamond("Diamond");
-    diamond.takeDamage(5);
-    diamond.beRepaired(5);
+    diamond.attack("target");
+    diamond.highFiveGuys();
+    diamond.guardGate();
     diamond.whoAmI();
+    std::cout << std::endl;
+  }
+
+  std::cout << "\n== TEST2 ==\n\n";
+  {
+    DiamondTrap diamond = DiamondTrap("diamond2");
+    diamond.displayInfo();
+
+    diamond.attack("target");
+    diamond.highFiveGuys();
+    diamond.guardGate();
+    diamond.whoAmI();
+  }
+
+  std::cout << "\n== TEST3 ==\n\n";
+  {
+    DiamondTrap diamond3;
   }
 
   return 0;

@@ -9,14 +9,14 @@ class ScavTrap : virtual public ClapTrap {
  public:
   ScavTrap();
   explicit ScavTrap(const std::string& name);
+
   ~ScavTrap();
 
   ScavTrap& operator=(const ScavTrap& other);
 
-  // virtual void attack(const std::string& target);
-  // virtual void takeDamage(unsigned int amount);
-  // virtual void beRepaired(unsigned int amount);
+  const std::string& get_name() const;
 
+  void attack(const std::string& target);
   void guardGate();
 
  private:

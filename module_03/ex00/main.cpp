@@ -6,8 +6,8 @@ int main(void) {
   std::cout << "== TEST1 ==\n\n";
   // HP CASE
   {
-    std::cout << "STATEMENT ClapTrap clap(\"Base\");" << '\n';
-    ClapTrap clap("Base");
+    std::cout << "STATEMENT ClapTrap clap(\"CLAP\");" << '\n';
+    ClapTrap clap("CLAP");
     clap.displayInfo();
 
     std::cout << "STATEMENT clap.attack(\"target_1\");" << '\n';

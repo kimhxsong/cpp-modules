@@ -4,58 +4,36 @@
 #include <string>
 
 DiamondTrap::DiamondTrap()
-  : ClapTrap() {}
+  : ClapTrap("default_clap_name"),
+    name_("default") {
+  std::cout << "DiamondTrap Default Constructor Called\n";
+}
 
 DiamondTrap::DiamondTrap(const std::string& name)
   : ClapTrap(name + "_clap_name"),
     name_(name) {
-  std::cout << "DiamondTrap Default Constructor Called\n";
+  set_hit_point(FragTrap::get_hit_point());
+  set_energy_point(ScavTrap::get_energy_point());
+  set_attack_damage(FragTrap::get_attack_damage());
+  std::cout << "DiamondTrap Parameterized Constructor Called\n";
 }
 
 DiamondTrap::~DiamondTrap() {
-  std::cout << "DiamondTrap Destructor Called: " << name_ << '\n';
+  std::cout << "DiamondTrap Destructor Called: " << get_name() << '\n';
 }
 
-// void DiamondTrap::takeDamage(unsigned int amount) {
-//   if (isTrapBroken() == true) {
-//     std::cout << "DiamondTrap " << get_name() <<
-//                  " is already completely broken\n";
-//     return;
-//   }
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
+  name_ = other.name_;
+  hit_point_ = other.hit_point_;
+  energy_point_ = other.energy_point_;
+  attack_damage_ = other.attack_damage_;
+  return *this;
+}
 
-//   if (get_hit_point() < amount) {
-//     set_hit_point(0);
-//   } else {
-//     set_hit_point(get_hit_point() - amount);
-//   }
-
-//   std::cout << "DiamondTrap " << get_name() <<
-//                " takes Damages " << amount <<
-//                " and has " << get_hit_point() <<
-//                " hit points.\n";
-// }
-
-// void DiamondTrap::beRepaired(unsigned int amount) {
-//   if (isTrapBroken() == true) {
-//     std::cout << "DiamondTrap " << get_name() <<
-//                  " is already completely broken. it can't be fixed\n";
-//     return;
-//   }
-
-//   if (get_energy_point() == 0) {
-//     std::cout << "DiamondTrap " << get_name() <<
-//                  " has not enough energy to be repaired\n";
-//     return;
-//   }
-
-//   set_energy_point(get_energy_point() - 1);
-//   set_hit_point(get_hit_point() + amount);
-//   std::cout << "DiamondTrap " << get_name() <<
-//                " is repaired " << amount <<
-//                " and has " << get_hit_point() <<
-//                " hit points.\n";
-// }
+const std::string& DiamondTrap::get_name() const {
+  return name_;
+}
 
 void DiamondTrap::whoAmI() {
-  std::cout << "My name is " << get_name() << '\n';
+  std::cout << "DiamondTrap My name is " << get_name() << '\n';
 }

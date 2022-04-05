@@ -3,12 +3,15 @@
 #include <iostream>
 #include <string>
 
-FragTrap::FragTrap() {
+FragTrap::FragTrap()
+  : name_("default") {
   std::cout << "FragTrap Default Constructor Called\n";
 }
 
 FragTrap::FragTrap(const std::string& name)
-  : name_(name) {
+  : ClapTrap(name + "_clap_name"),
+    name_(name) {
+  std::cout << "FragTrap Parameterized Constructor Called\n";
   set_hit_point(100);
   set_energy_point(100);
   set_attack_damage(30);
@@ -24,6 +27,10 @@ FragTrap& FragTrap::operator=(const FragTrap& other) {
   energy_point_ = other.energy_point_;
   attack_damage_ = other.attack_damage_;
   return *this;
+}
+
+const std::string& FragTrap::get_name() const {
+  return name_;
 }
 
 void FragTrap::highFiveGuys() {

@@ -12,10 +12,10 @@ class ClapTrap {
 
   ClapTrap& operator=(const ClapTrap& other);
 
-  const std::string& get_name() const ;
-  unsigned int get_energy_point() const ;
-  unsigned int get_attack_damage() const ;
-  unsigned int get_hit_point() const ;
+  const std::string& get_name() const;
+  unsigned int get_energy_point() const;
+  unsigned int get_attack_damage() const;
+  unsigned int get_hit_point() const;
 
   void set_energy_point(unsigned int energy_point);
   void set_attack_damage(unsigned int attack_damage);

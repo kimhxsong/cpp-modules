@@ -3,8 +3,6 @@ NAME = ClapTrap
 CC = c++
 CXXFLAGS = -Wall -Wextra -Werror -g -pedantic -std=c++98
 
-INCLUDES = -I include/
-
 BASENAMES = main ClapTrap
 
 SRCS = $(addsuffix .cpp, $(BASENAMES))

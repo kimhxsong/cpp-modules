@@ -3,12 +3,16 @@
 #include <iostream>
 #include <string>
 
-ScavTrap::ScavTrap() {
+ScavTrap::ScavTrap()
+  : name_("default") {
   std::cout << "ScavTrap Default Constructor Called\n";
+  set_energy_point(50);
 }
 
 ScavTrap::ScavTrap(const std::string& name)
-  : name_(name) {
+  : ClapTrap(name + "_clap_name"),
+    name_(name) {
+  std::cout << "ScavTrap Parameterized Constructor Called\n";
   set_hit_point(100);
   set_energy_point(50);
   set_attack_damage(20);
@@ -26,73 +30,35 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
   return *this;
 }
 
+const std::string& ScavTrap::get_name() const {
+  return name_;
+}
 
-// void ScavTrap::attack(const std::string& target) {
-//   if (get_hit_point() == 0) {
-//     std::cout << "ScavTrap " << get_name() <<
-//                  " is already completely broken, can't do anything\n";
-//     return;
-//   }
-
-//   if (get_energy_point() == 0) {
-//     std::cout << "ScavTrap " << get_name() <<
-//                  " has not enough energy to attack\n";
-//     return;
-//   }
-
-//   set_energy_point(get_energy_point() - 1);
-//   std::cout << "ScavTrap " << get_name() <<
-//                " attacks " << target <<
-//                ", causing " << get_attack_damage() <<
-//                " points of damage!\n";
-// }
-
-// void ScavTrap::takeDamage(unsigned int amount) {
-//   if (get_hit_point() == 0) {
-//     std::cout << "ScavTrap " << get_name() <<
-//                  " is already completely broken\n";
-//     return;
-//   }
-
-//   if (get_hit_point() < amount) {
-//     set_hit_point(0);
-//   } else {
-//     set_hit_point(get_hit_point() - amount);
-//   }
-
-//   std::cout << "ScavTrap " << get_name() <<
-//                " takes Damages " << amount <<
-//                " and has " << get_hit_point() <<
-//                " hit points.\n";
-// }
-
-// void ScavTrap::beRepaired(unsigned int amount) {
-//   if (get_hit_point() == 0) {
-//     std::cout << "ScavTrap " << get_name() <<
-//                  " is already completely broken. it can't be fixed\n";
-//     return;
-//   }
-
-//   if (get_energy_point() == 0) {
-//     std::cout << "ScavTrap " << get_name() <<
-//                  " has not enough energy to be repaired\n";
-//     return;
-//   }
-
-//   set_energy_point(get_energy_point() - 1);
-//   set_hit_point(get_hit_point() + amount);
-//   std::cout << "ScavTrap " << get_name() <<
-//                " is repaired " << amount <<
-//                " and has " << get_hit_point() <<
-//                " hit points.\n";
-// }
-
-void ScavTrap::guardGate() {
-  if (get_hit_point() == 0) {
+void ScavTrap::attack(const std::string& target) {
+  if (isTrapBroken() == true) {
     std::cout << "ScavTrap " << get_name() <<
-                 " is already completely broken\n";
+                 " is already completely broken, can't do anything\n";
     return;
   }
 
-  std::cout << "ScavTrap is now in Gate keeper mode.\n";
+  if (hasNoEnergy() == true) {
+    std::cout << "ScavTrap " << get_name() <<
+                 " has not enough energy to attack\n";
+    return;
+  }
+
+  set_energy_point(get_energy_point() - 1);
+  std::cout << "ScavTrap " << get_name() <<
+               " attacks " << target <<
+               ", causing " << get_attack_damage() <<
+               " points of damage!\n";
+}
+
+void ScavTrap::guardGate() {
+  if (isTrapBroken() == true) {
+    std::cout << "ScavTrap " << get_name() << " is already completely broken\n";
+    return;
+  }
+
+  std::cout << "ScavTrap " << get_name() << " is now in Gate keeper mode.\n";
 }
