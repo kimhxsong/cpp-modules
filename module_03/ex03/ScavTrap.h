@@ -10,7 +10,7 @@ class ScavTrap : virtual public ClapTrap {
   ScavTrap();
   explicit ScavTrap(const std::string& name);
 
-  ~ScavTrap();
+  virtual ~ScavTrap();
 
   ScavTrap& operator=(const ScavTrap& other);
 

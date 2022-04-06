@@ -14,7 +14,7 @@ class DiamondTrap
   DiamondTrap();
   explicit DiamondTrap(const std::string& name);
 
-  ~DiamondTrap();
+  virtual ~DiamondTrap();
 
   DiamondTrap& operator=(const DiamondTrap& other);
 

@@ -8,7 +8,7 @@ class ClapTrap {
   ClapTrap();
   explicit ClapTrap(const std::string& name);
 
-  ~ClapTrap();
+  virtual ~ClapTrap();
 
   ClapTrap& operator=(const ClapTrap& other);
 
