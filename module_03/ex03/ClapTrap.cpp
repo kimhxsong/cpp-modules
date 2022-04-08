@@ -3,12 +3,8 @@
 #include <iostream>
 #include <string>
 
-ClapTrap::ClapTrap()
-  : energy_point_(10),
-    attack_damage_(0),
-    hit_point_(10),
-    name_("default") {
-  std::cout << "ClapTrap Default Constructor Called: " << name_ << '\n';
+ClapTrap::ClapTrap() {
+  std::cout << "ClapTrap Default Constructor Called\n";
 }
 
 ClapTrap::ClapTrap(const std::string& name)

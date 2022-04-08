@@ -4,8 +4,7 @@
 #include <string>
 
 DiamondTrap::DiamondTrap()
-  : ClapTrap("default_clap_name"),
-    name_("default") {
+  : ClapTrap("_clap_name") {
   std::cout << "DiamondTrap Default Constructor Called\n";
 }
 
@@ -34,7 +33,11 @@ const std::string& DiamondTrap::get_name() const {
   return name_;
 }
 
+void  DiamondTrap::attack(const std::string& target) {
+  return ScavTrap::attack(target);
+}
+
 void DiamondTrap::whoAmI() {
-  std::cout << "DiamondTrap My name is " << get_name() << '\n';
+  std::cout << "DiamondTrap My name is " << DiamondTrap::get_name() << '\n';
  std::cout << "ClapTrap My name is " << ClapTrap::get_name() << '\n';
 }

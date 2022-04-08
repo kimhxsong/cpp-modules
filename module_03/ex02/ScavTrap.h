@@ -7,20 +7,17 @@
 
 class ScavTrap : public ClapTrap {
  public:
-  ScavTrap();
   explicit ScavTrap(const std::string& name);
 
   virtual ~ScavTrap();
 
   ScavTrap& operator=(const ScavTrap& other);
 
-  const std::string& get_name() const;
-
   void attack(const std::string& target);
   void guardGate();
 
- private:
-  std::string name_;
+ protected:
+  ScavTrap();
 };
 
 #endif  // SCAVTRAP_H_

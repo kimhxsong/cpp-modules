@@ -5,7 +5,6 @@
 
 class ClapTrap {
  public:
-  ClapTrap();
   explicit ClapTrap(const std::string& name);
 
   virtual ~ClapTrap();
@@ -30,11 +29,11 @@ class ClapTrap {
   void displayInfo();
 
  protected:
+  ClapTrap();
+
   unsigned int energy_point_;
   unsigned int attack_damage_;
   unsigned int hit_point_;
-
- private:
   std::string name_;
 };
 
