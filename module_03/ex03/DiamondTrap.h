@@ -19,6 +19,7 @@ class DiamondTrap
   DiamondTrap& operator=(const DiamondTrap& other);
 
   const std::string& get_name() const;
+  void attack(const std::string& target);
 
   void whoAmI();
 

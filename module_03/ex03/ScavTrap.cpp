@@ -3,16 +3,14 @@
 #include <iostream>
 #include <string>
 
-ScavTrap::ScavTrap()
-  : name_("default") {
+ScavTrap::ScavTrap() {
   std::cout << "ScavTrap Default Constructor Called\n";
   set_energy_point(50);
 }
 
-ScavTrap::ScavTrap(const std::string& name)
-  : ClapTrap(name + "_clap_name"),
-    name_(name) {
+ScavTrap::ScavTrap(const std::string& name) {
   std::cout << "ScavTrap Parameterized Constructor Called\n";
+  name_ = name;
   set_hit_point(100);
   set_energy_point(50);
   set_attack_damage(20);
@@ -28,10 +26,6 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
   energy_point_ = other.energy_point_;
   attack_damage_ = other.attack_damage_;
   return *this;
-}
-
-const std::string& ScavTrap::get_name() const {
-  return name_;
 }
 
 void ScavTrap::attack(const std::string& target) {
@@ -56,9 +50,10 @@ void ScavTrap::attack(const std::string& target) {
 
 void ScavTrap::guardGate() {
   if (isTrapBroken() == true) {
-    std::cout << "ScavTrap " << get_name() << " is already completely broken\n";
+    std::cout << "ScavTrap " << get_name() <<
+                 " is already completely broken\n";
     return;
   }
 
-  std::cout << "ScavTrap " << get_name() << " is now in Gate keeper mode.\n";
+  std::cout << "ScavTrap is now in Gate keeper mode.\n";
 }

@@ -55,6 +55,13 @@ int main(void) {
   {
     DiamondTrap diamond3;
   }
-
+  
+  std::cout << "\n== TEST4 ==\n\n";
+  {
+    ClapTrap *test_clap = new DiamondTrap("dia");
+    test_clap->attack("target");
+    delete test_clap;
+  }
+  system("leaks DiamondTrap");
   return 0;
 }

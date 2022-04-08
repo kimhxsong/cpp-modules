@@ -5,14 +5,13 @@
 
 class ClapTrap {
  public:
-  ClapTrap();
   explicit ClapTrap(const std::string& name);
 
   virtual ~ClapTrap();
 
   ClapTrap& operator=(const ClapTrap& other);
 
-  virtual const std::string& get_name() const ;
+  const std::string& get_name() const ;
   unsigned int get_energy_point() const ;
   unsigned int get_attack_damage() const ;
   unsigned int get_hit_point() const ;
@@ -30,11 +29,11 @@ class ClapTrap {
   void displayInfo();
 
  protected:
+  ClapTrap();
+
   unsigned int energy_point_;
   unsigned int attack_damage_;
   unsigned int hit_point_;
-
- private:
   std::string name_;
 };
 
