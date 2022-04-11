@@ -2,26 +2,38 @@
 
 #include <iostream>
 #include <string>
+#include <new>
 
+#include "Animal.h"
 #include "Brain.h"
 
-Dog::Dog() {
-  type = "Dog";
-  std::cout << "Dog Constructor Called\n";
-  brain = new Brain();
+Dog::Dog()
+  : Animal("Dog") {
+  std::cout << "Dog Default Constructor Called\n";
+  brain_ = new Brain;
+}
+
+Dog::Dog(const Dog& other) {
+  std::cout << "Dog Copy Constructor Called\n";
+  brain_ = new Brain;
+  *this = other;
 }
 
 Dog::~Dog() {
-  delete brain;
   std::cout << "Dog Destructor Called\n";
+  delete brain_;
 }
 
 Dog& Dog::operator=(const Dog& other) {
-  type = other.type;
-  brain = other.brain;
+  type_ = other.getType();
+  *brain_ = other.getBrain();
   return *this;
 }
 
 void Dog::makeSound() const {
-  std::cout << "Bark Barkkk! ^&^\n";
+  std::cout << "Bowwow Bowwow! =*=\n";
+}
+
+Brain& Dog::getBrain() const {
+  return *brain_;
 }

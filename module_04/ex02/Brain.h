@@ -12,8 +12,10 @@ class Brain {
 
   Brain& operator=(const Brain& other);
 
+  const std::string& getIdea(const size_t index) const;
+  
  private:
-  std::string ideas[100];
+  std::string ideas_[100];
 };
 
 #endif  // BRAIN_H_

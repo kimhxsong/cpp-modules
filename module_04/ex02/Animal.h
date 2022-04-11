@@ -5,19 +5,20 @@
 
 class Animal {
  public:
-  Animal();
-  Animal(const Animal& other);
   virtual ~Animal();
-  
+
   Animal& operator=(const Animal& other);
 
   const std::string& getType() const;
 
-  // pure virtual method
   virtual void makeSound() const = 0;
 
  protected:
-  std::string type;
+  Animal();
+  Animal(const Animal& other);
+  Animal(const std::string& type);
+
+  std::string type_;
 };
 
-#endif
+#endif  // ANIMAL_H_

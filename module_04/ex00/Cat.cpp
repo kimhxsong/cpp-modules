@@ -3,9 +3,16 @@
 #include <iostream>
 #include <string>
 
-Cat::Cat() {
-  type = "Cat";
-  std::cout << "Cat Constructor Called\n";
+#include "Animal.h"
+
+Cat::Cat()
+  : Animal("Cat") {
+  std::cout << "Cat Default Constructor Called\n";
+}
+
+Cat::Cat(const Cat& other) {
+  std::cout << "Cat Copy Constructor Called\n";
+  *this = other;
 }
 
 Cat::~Cat() {
@@ -13,10 +20,10 @@ Cat::~Cat() {
 }
 
 Cat& Cat::operator=(const Cat& other) {
-  type = other.type;
+  type_ = other.getType();
   return *this;
 }
 
 void Cat::makeSound() const {
-  std::cout << "Meow.. Meowwwooo >.<\n";
+  std::cout << "Meow Meow.. >.<\n";
 }

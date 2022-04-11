@@ -3,9 +3,16 @@
 #include <iostream>
 #include <string>
 
-Dog::Dog() {
-  type = "Dog";
-  std::cout << "Dog Constructor Called\n";
+#include "Animal.h"
+
+Dog::Dog()
+  : Animal("Dog") {
+  std::cout << "Dog Default Constructor Called\n";
+}
+
+Dog::Dog(const Dog& other) {
+  std::cout << "Dog Copy Constructor Called\n";
+  *this = other;
 }
 
 Dog::~Dog() {
@@ -13,10 +20,10 @@ Dog::~Dog() {
 }
 
 Dog& Dog::operator=(const Dog& other) {
-  type = other.type;
+  type_ = other.getType();
   return *this;
 }
 
 void Dog::makeSound() const {
-  std::cout << "Bark Barkkk! ^&^\n";
+  std::cout << "Bowwow Bowwow! =*=\n";
 }
