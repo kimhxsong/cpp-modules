@@ -11,6 +11,7 @@ int main() {
     Bureaucrat three;
     three = one;
 
+    three.incrementGrade();
     // Bureaucrat high1("high1", 0);
     // std::cout << high1 << '\n';
 
@@ -52,6 +53,7 @@ int main() {
   Form formC(formA);
   std::cout << formC << '\n';
   someone.signForm(formB);
-
+  someone.setName("newone");
+  std::cout << someone << '\n';
   return 0;
 }

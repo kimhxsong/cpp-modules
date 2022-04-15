@@ -12,7 +12,6 @@ Form::Form()
     kExecutableGrade_(150),
     sign_(false) {
   std::cout << "Form Default Constructor Called\n";
-  
 }
 
 Form::Form(const Form& other) {

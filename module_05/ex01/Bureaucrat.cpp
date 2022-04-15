@@ -44,6 +44,10 @@ unsigned char Bureaucrat::getGrade() const {
   return grade_;
 }
 
+void  Bureaucrat::setName(const std::string& name) {
+  *const_cast<std::string*>(&name_) = name;
+}
+
 void Bureaucrat::setGrade(const unsigned int grade) {
   if (grade > 150) {
     throw GradeTooLowException();
