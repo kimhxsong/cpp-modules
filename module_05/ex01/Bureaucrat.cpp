@@ -7,7 +7,8 @@
 #include "Form.h"
 
 Bureaucrat::Bureaucrat()
-  : grade_(150) {
+  : name_("default"),
+    grade_(150) {
   std::cout << "Bureaucrat Default Constructor Called\n";
 }
 
@@ -42,6 +43,10 @@ const std::string& Bureaucrat::getName() const {
 
 unsigned char Bureaucrat::getGrade() const {
   return grade_;
+}
+
+void Bureaucrat::setName(const std::string& name) {
+  *const_cast<std::string*>(&name_) = name;
 }
 
 void Bureaucrat::setGrade(const unsigned int grade) {

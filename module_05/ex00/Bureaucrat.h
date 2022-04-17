@@ -10,13 +10,13 @@ class Bureaucrat {
   class GradeTooHighException : public std::exception {
    public:
     // override
-    const char* what() const throw() { return "Exception: Grade Too High"; };
+    const char* what() const throw() { return "Grade Too High"; };
   };
 
   class GradeTooLowException : public std::exception {
    public:
     // override
-    const char* what() const throw() { return "Exception: Grade Too Low"; };
+    const char* what() const throw() { return "Grade Too Low"; };
   };
 
   Bureaucrat();
@@ -29,6 +29,8 @@ class Bureaucrat {
 
   const std::string& getName() const;
   unsigned char getGrade() const;
+
+  void  setName(const std::string& name);
 
   void incrementGrade();
   void decrementGrade();

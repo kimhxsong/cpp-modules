@@ -49,7 +49,7 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
     return;
   }
 
-  std::cout << "The robotomy failed\n";
+  std::cout << "Robotizing " << getTarget() << " has been failed\n";
 }
 
 

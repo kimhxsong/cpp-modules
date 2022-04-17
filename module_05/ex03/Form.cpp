@@ -8,7 +8,8 @@
 #include "Bureaucrat.h"
 
 Form::Form()
-  : kSignableGrade_(150),
+  : name_("default"),
+    kSignableGrade_(150),
     kExecutableGrade_(150),
     sign_(false) {
   std::cout << "Form Default Constructor Called\n";
