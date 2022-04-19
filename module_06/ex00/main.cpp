@@ -4,48 +4,6 @@
 #include <cstring>
 #include <string>
 
-// -inff, +inff, -inf, +inf, nan(not a number)
-// Non displayable, imposible 이런 문제들. 나는 적절한 유형인지만 평가하면됨.
-/*
-int impossible .
-int 
-*/
-//   std::cout << std::setprecision(16); 기본 정밀도는 6
-// class Convert {
-//  public:
-//   enum eTypeLiteral {
-//     TYPE_LITERAL_CHAR,
-//     TYPE_LITERAL_INT,
-//     TYPE_LITERAL_FLOAT,
-//     TYPE_LITERAL_DOUBLE
-//   };
-
-//   Converter();
-//   Converter(const Converter& other);
-
-//   ~Converter();
-
-//   void detectType();
-//   void execute()
-
-//   operator=(const Converter& other);
-
-//  private:
-//   double dnum_;
-//   float fnum_;
-//   int inum_;
-//   int type;
-//   char  ch_;
-// };
-
-// int Converter::detectType(const std::string &input) {
-//   if (input.size() <= 1) {
-//     return TYPE_LITERAL_CHAR;
-//   }
-
-//   return 0;
-// } // float는 끝까지 읽음.
-// 
 enum etype {
   TYPE_CH = 1,
   TYPE_INT = 2,
@@ -63,14 +21,83 @@ void validateArg(int argc, char *argv[]) {
 }
 
 int main(int argc, char* argv[]) {
+  try {
+    if (converter::isValidArgument(argc, argv) == -1)
+      throw();
 
-  int type;
-  std::string istr(argv[1]);
+    Converter converter(argv[1]);
+    // converter.getExpectedType()
+    converter.execute(); // 상태관리.
+    {
+      type = castFromType(type); //성공함. 예외 안던짐.
+      void *detected_type = 
+
+    caseFromType()
+    {
+      switch (type) {
+        case 0:
+          iss >> ch:
+          detected_type = &ch;
+        case 1: // overflow
+          iss >> inum:
+          if (!iss) {
+            return;
+          }
+          detected_type = &inum;
+        case 2: // inf, nan
+          iss >> dnum:
+          if (!iss) {
+            return;
+          }
+          detected_type = &dnum;
+        case 3: // inff, nan
+          iss >> fnum:
+          if (!iss) {
+            return;
+          }
+          detected_type = &fnum;
+        default:
+          break;
+      }
+      if (!iss.eof()) {
+        throw()
+      }
+      return TYPE;
+    }
+      // 인덱스. 함수 포인터 현재 인덱스 기억했다가 초기화하고 %루프로 돌면서 처리.
+      if (type == NAN) {
+
+      } else if (type == INF) {
+
+      }
+
+      for (size_t count = 0; count < 4; ++count) {
+        switch (type) {
+          case 0:
+            ch = *static_cast<char*>(detected_type);
+          case 1:
+            inum = *static_cast<int*>(detected_type);
+          case 2:
+            fnum = *static_cast<float*>(detected_type);
+          case 3:
+            dnum = *static_cast<double*>(detected_type);
+          default:
+            // exception
+            break;
+        }
+        type = (++type) % 4
+      }
+    // converter.display();
+  } catch (...) {
+    return -1;
+  }
+  converter.display();
+  return 0;
 
   try {
     validateArg(argc, argv);
   } catch (const std::string &s) {
-    std::cout << "validateArg(): " << s << '\n';
+    std::cout << "Error: " << s << '\n';
   }
 
   try {
@@ -137,11 +164,12 @@ int main(int argc, char* argv[]) {
   
   type = TYPE_INT;
   iss >> std::skipws >> ch;
+
   if (ch == '+' || ch == '-') {
       iss >> std::skipws >> ch;
   }
 
-  while (true)
+  while (true) {
     iss >> std::skipws >> ch;
     if (iss.eof()) break;
 
