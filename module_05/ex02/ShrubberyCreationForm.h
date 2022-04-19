@@ -12,7 +12,7 @@ class ShrubberyCreationForm : public Form {
   ShrubberyCreationForm(const ShrubberyCreationForm& other);
   ShrubberyCreationForm(const std::string& target);
 
-  ~ShrubberyCreationForm();
+  virtual ~ShrubberyCreationForm();
 
   ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
   // override

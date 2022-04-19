@@ -3,13 +3,15 @@
 #include <iostream>
 
 PresidentialPardonForm::PresidentialPardonForm()
-  : Form("PresidentialPardonForm", 25, 5) {
+  : Form("PresidentialPardonForm", 25, 5),
+    target_("RandomTarget") {
   std::cout << "PresidentialPardonForm Default Constructor Called\n";
   
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
-  : Form("PresidentialPardonForm", 25, 5) {
+  : Form("PresidentialPardonForm", 25, 5),
+    target_("RandomTarget") {
   std::cout << "PresidentialPardonForm Copy Constructor Called\n";
   *this = other;
 }

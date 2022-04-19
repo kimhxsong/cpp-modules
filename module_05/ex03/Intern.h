@@ -27,7 +27,7 @@ class Intern {
   Form* makeForm(const std::string& name, const std::string& target);
 
  private:
-  static std::string form_name_table_[3];
+  static const std::string form_name_table_[3];
 };
 
 #endif  // INTERN_H_

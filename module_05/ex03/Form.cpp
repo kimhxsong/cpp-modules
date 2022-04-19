@@ -7,15 +7,31 @@
 
 #include "Bureaucrat.h"
 
+const char* Form::AlreadySignedException::what() const throw() {
+  return "Already Signed";
+}
+
+const char* Form::GradeTooHighException::what() const throw() {
+  return "Grade Too High";
+}
+
+const char* Form::GradeTooLowException::what() const throw() {
+  return "Grade Too Low";
+}
+
 Form::Form()
-  : kSignableGrade_(150),
+  : name_("Default"),
+    kSignableGrade_(150),
     kExecutableGrade_(150),
     sign_(false) {
   std::cout << "Form Default Constructor Called\n";
 }
 
 Form::Form(const Form& other)
-  : sign_(false) {
+  : name_("Default"),
+    kSignableGrade_(150),
+    kExecutableGrade_(150),
+    sign_(false) {
   std::cout << "Form Copy Constructor Called\n";
   *this = other;
 }
@@ -78,10 +94,10 @@ void Form::beSigned(const Bureaucrat& signer) const {
   *const_cast<bool*>(&sign_) = true;
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& rhs) {
-  os << "Form: " << rhs.getName() << '\n' <<
-        "isSigned: " << (rhs.isSigned() ? "true" : "false") << '\n' <<
-        "Signable Grade: " << rhs.getSignableGrade() << '\n' <<
-        "Excutable Grade: " << rhs.getExecutableGrade();
+std::ostream& operator<<(std::ostream& os, const Form& f) {
+  os << "Form: " << f.getName() << '\n' <<
+        "isSigned: " << (f.isSigned() ? "true" : "false") << '\n' <<
+        "Signable Grade: " << f.getSignableGrade() << '\n' <<
+        "Excutable Grade: " << f.getExecutableGrade();
   return os;
 }
