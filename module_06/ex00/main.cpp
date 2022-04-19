@@ -4,6 +4,49 @@
 #include <cstring>
 #include <string>
 
+// -inff, +inff, -inf, +inf, nan(not a number)
+// Non displayable, imposible 이런 문제들. 나는 적절한 유형인지만 평가하면됨.
+/*
+int impossible .
+int 
+*/
+//   std::cout << std::setprecision(16); 기본 정밀도는 6
+// class Convert {
+//  public:
+//   enum eTypeLiteral {
+//     TYPE_LITERAL_CHAR,
+//     TYPE_LITERAL_INT,
+//     TYPE_LITERAL_FLOAT,
+//     TYPE_LITERAL_DOUBLE
+//   };
+
+//   Converter();
+//   Converter(const Converter& other);
+
+//   ~Converter();
+
+//   void detectType();
+//   void execute()
+
+//   operator=(const Converter& other);
+
+//  private:
+//   double dnum_;
+//   float fnum_;
+//   int inum_;
+//   int type;
+//   char  ch_;
+// };
+
+// int Converter::detectType(const std::string &input) {
+//   if (input.size() <= 1) {
+//     return TYPE_LITERAL_CHAR;
+//   }
+
+//   return 0;
+// } // float는 끝까지 읽음.
+// 
+
 enum etype {
   TYPE_CH = 1,
   TYPE_INT = 2,
@@ -62,6 +105,9 @@ int main(int argc, char* argv[]) {
       if (!iss.eof()) {
         throw()
       }
+      if (iss.fail()) {
+        //maybe overflow
+      }
       return TYPE;
     }
       // 인덱스. 함수 포인터 현재 인덱스 기억했다가 초기화하고 %루프로 돌면서 처리.
@@ -71,6 +117,8 @@ int main(int argc, char* argv[]) {
 
       }
 
+      // 개별적으로 사용할 일이 없고,, 구분지어야할 명령문이 그리 길거나 또 많지 않기 때문에 배열
+      // 로 풀지 않음. 더 복잡하기도 하고.. 
       for (size_t count = 0; count < 4; ++count) {
         switch (type) {
           case 0:
@@ -78,9 +126,9 @@ int main(int argc, char* argv[]) {
           case 1:
             inum = *static_cast<int*>(detected_type);
           case 2:
-            fnum = *static_cast<float*>(detected_type);
+            fnum = *static_cast<float*>(detected_type); // 아마 포인터 그대로 하면 안될 듯?
           case 3:
-            dnum = *static_cast<double*>(detected_type);
+            dnum = *static_cast<double*>(detected_type); // ..
           default:
             // exception
             break;
@@ -191,36 +239,5 @@ int main(int argc, char* argv[]) {
   }
   return TYPE;
 
-
-  unsigned char marked = 00000;
-  std::cout << "ch: " << ch << '\n';
-  while (true) {
-    if (ch == '.' || !(iss >> std::skipws >> ch) && iss.eof()) break;
-
-    switch (ch) {
-      case '+':
-      case '-':
-        if (marked & 01000) return (-1);
-        marked |= 01000;
-        break;
-      case '.':
-        break;
-      default:
-        // throw() exception;
-        break;
-    }
-  }
-
-  if (iss.eof()) {
-    return type;
-  }
-
-  if (ch == 'f') {
-    iss >> std::skipws >> ch;
-    if (iss.eof()) {
-      type = TYPE_FLOAT;
-
-    } 
-  }
   std::cout << type << '\n';
 }
