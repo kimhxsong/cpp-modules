@@ -12,13 +12,13 @@ class Bureaucrat {
   class GradeTooHighException : public std::exception {
    public:
     // override
-    const char* what() const throw() { return "Exception: Grade Too High"; };
+    const char* what() const throw();
   };
 
   class GradeTooLowException : public std::exception {
    public:
     // override
-    const char* what() const throw() { return "Exception: Grade Too Low"; };
+    const char* what() const throw();
   };
 
   Bureaucrat();
@@ -42,7 +42,7 @@ class Bureaucrat {
   void setGrade(const unsigned int grade);
 
   const std::string name_;
-  unsigned int grade_;
+  const unsigned int grade_;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& rhs);

@@ -5,12 +5,14 @@
 #include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-  : Form("ShrubberyCreationForm", 145, 137) {
+  : Form("ShrubberyCreationForm", 145, 137),
+    target_("RandomTarget") {
   std::cout << "ShrubberyCreationForm Default Constructor Called\n";
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
-  : Form("ShrubberyCreationForm", 145, 137) {
+  : Form("ShrubberyCreationForm", 145, 137),
+    target_("RandomTarget") {
   std::cout << "ShrubberyCreationForm Copy Constructor Called\n";
   *this = other;
 }

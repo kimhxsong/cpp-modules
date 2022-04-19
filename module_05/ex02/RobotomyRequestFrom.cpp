@@ -5,13 +5,15 @@
 #include <random>
 
 RobotomyRequestForm::RobotomyRequestForm()
-  : Form("RobotomyRequestForm", 72, 45) {
+  : Form("RobotomyRequestForm", 72, 45),
+    target_("RandomTarget") {
   std::cout << "RobotomyRequestForm Default Constructor Called\n";
   
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-  : Form("RobotomyRequestForm", 72, 45) {
+  : Form("RobotomyRequestForm", 72, 45),
+    target_("RandomTarget") {
   std::cout << "RobotomyRequestForm Copy Constructor Called\n";
   *this = other;
 }
@@ -20,17 +22,15 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
   : Form("RobotomyRequestForm", 72, 45) {
   std::cout << "RobotomyRequestForm Parameterized Constructor Called\n";
   target_ = target;
-  
 }
+
 RobotomyRequestForm::~RobotomyRequestForm() {
   std::cout << "RobotomyRequestForm Destructor Called\n";
 }
 
-RobotomyRequestForm&
-RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
   std::cout << "RobotomyRequestForm Copy Operator Called\n";
   target_ = other.getTarget();
-
   return *this;
 }
 

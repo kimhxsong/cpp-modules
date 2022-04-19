@@ -6,8 +6,8 @@
 #include "RobotomyRequestForm.h"
 #include "ShrubberyCreationForm.h"
 
-// static
-std::string Intern::form_name_table_[3] = {
+// static const
+const std::string Intern::form_name_table_[3] = {
   "presidential pardon", 
   "robotomy request", 
   "shrubbery creation"

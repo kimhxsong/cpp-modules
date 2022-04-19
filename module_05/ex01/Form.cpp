@@ -7,15 +7,31 @@
 
 #include "Bureaucrat.h"
 
+const char* Form::AlreadySignedException::what() const throw() {
+  return "Already Signed";
+}
+
+const char* Form::GradeTooHighException::what() const throw() {
+  return "Grade Too High";
+}
+
+const char* Form::GradeTooLowException::what() const throw() {
+  return "Grade Too Low";
+}
+
 Form::Form()
-  : name_("default"),
+  : name_("Default"),
     kSignableGrade_(150),
     kExecutableGrade_(150),
     sign_(false) {
   std::cout << "Form Default Constructor Called\n";
 }
 
-Form::Form(const Form& other) {
+Form::Form(const Form& other)
+  : name_("Default"),
+    kSignableGrade_(150),
+    kExecutableGrade_(150),
+    sign_(false) {
   std::cout << "Form Copy Constructor Called\n";
   *this = other;
 }
@@ -24,7 +40,8 @@ Form::Form(const std::string& name, const unsigned int signable_grade,
                                     const unsigned int executable_grade)
   : name_(name),
     kSignableGrade_(signable_grade),
-    kExecutableGrade_(executable_grade) {
+    kExecutableGrade_(executable_grade),
+    sign_(false) {
   if (kSignableGrade_ < 1 || kExecutableGrade_ < 1) {
     throw GradeTooHighException();
   }

@@ -11,17 +11,20 @@ class Form {
  public:
    class AlreadySignedException : public std::exception {
    public:
-    const char *what() const throw() { return "Already Signed"; };
+    // override
+    const char *what() const throw();
   };
 
   class GradeTooHighException : public std::exception {
    public:
-    const char *what() const throw() { return "Grade Too High"; };
+    // override
+    const char *what() const throw();
   };
 
   class GradeTooLowException : public std::exception {
    public:
-    const char *what() const throw() { return "Grade Too Low"; };
+    // override
+    const char *what() const throw();
   };
 
   Form();
@@ -42,8 +45,8 @@ class Form {
 
  private:
   const std::string name_;
-  unsigned int kSignableGrade_;
-  unsigned int kExecutableGrade_;
+  const unsigned int kSignableGrade_;
+  const unsigned int kExecutableGrade_;
   bool sign_;
 };
 

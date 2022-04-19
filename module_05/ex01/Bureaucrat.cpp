@@ -6,16 +6,27 @@
 
 #include "Form.h"
 
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+  return "Grade Too High";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+  return "Grade Too Low";
+}
+
 Bureaucrat::Bureaucrat()
-  : name_("default"),
+  : name_("Anonymous"),
     grade_(150) {
   std::cout << "Bureaucrat Default Constructor Called\n";
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) {
+Bureaucrat::Bureaucrat(const Bureaucrat& other)
+  : name_("Anonymous"),
+    grade_(150) {
   std::cout << "Bureaucrat Copy Constructor Called\n";
   *this = other;
 }
+
 Bureaucrat::Bureaucrat(const std::string& name, const unsigned int grade)
   : name_(name),
     grade_(grade) {
@@ -33,7 +44,7 @@ Bureaucrat::~Bureaucrat() {
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
   std::cout << "Bureaucrat Copy Operator Called\n";
   *const_cast<std::string*>(&name_) = other.getName();
-  grade_ = other.getGrade();
+  *const_cast<unsigned int*>(&grade_) = other.getGrade();
   return *this;
 }
 
@@ -55,7 +66,7 @@ void Bureaucrat::setGrade(const unsigned int grade) {
   } else if (grade < 1) {
     throw GradeTooHighException();
   }
-  grade_ = grade;
+  *const_cast<unsigned int*>(&grade_) = grade;
 }
 
 void Bureaucrat::incrementGrade() {

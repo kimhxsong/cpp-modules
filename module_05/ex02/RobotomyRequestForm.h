@@ -12,7 +12,7 @@ class RobotomyRequestForm : public Form {
   RobotomyRequestForm(const RobotomyRequestForm& other);
   RobotomyRequestForm(const std::string& target);
 
-  ~RobotomyRequestForm();
+  virtual ~RobotomyRequestForm();
 
   RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
   // override
