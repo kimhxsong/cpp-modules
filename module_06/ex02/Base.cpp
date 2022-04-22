@@ -1,24 +1,74 @@
 #include "Base.h"
 
+#include <ctime>
+#include <iostream>
 #include <random>
 
 #include "A.h"
 #include "B.h"
 #include "C.h"
 
-
-// 타입에 대한 uintptr_t를 만들어.
-
-// 동적배열에 새로만듬.기반클래스 파생클래스
-
-// static const Base* DerivedClassTable[] = {&sA, &sB, &sC};
-
 Base::~Base() {}
 
 Base* generate() {
-  Base* randomInstance = dynamic_cast<Base*>(new Base);
-  return randomInstance;
+  std::srand(time(NULL));
+  int i = std::rand() % 3;
+  switch (i) {
+    case 0:
+      return new A;
+    case 1:
+      return new B;
+    case 2:
+      return new C;
+    default:
+      break;
+  }
+  return NULL;
 }
 
-void identify(Base* p);
-void identify(Base& p);
+void identify(Base* p) {
+  std::string type_name;
+  A *a;
+  B *b;
+  C *c;
+
+  if (p == NULL) {
+    throw (std::string("Error: (Base*)p is NULL\n"));
+  }
+  if ((a = dynamic_cast<A*>(p)) != NULL) {
+    type_name = "A";
+  } else if ((b = dynamic_cast<B*>(p)) != NULL) {
+    type_name = "B";
+  } else if ((c = dynamic_cast<C*>(p)) != NULL) {
+    type_name = "C";
+  }
+
+  std::cout << "Actual type name: " << type_name << '\n';
+}
+
+void identify(Base& p) {
+  std::string type_name;
+
+  while (true) {
+    try {
+      p = dynamic_cast<A&>(p);
+      type_name = "A";
+      break;
+    } catch (const std::exception& e) {}
+
+    try {
+      p = dynamic_cast<B&>(p);
+      type_name = "B";
+      break;
+    } catch (const std::exception& e) {}
+
+    try {
+      p = dynamic_cast<C&>(p);
+      break;
+    } catch (const std::exception& e) {}
+
+    throw (std::string("Error: Can't identify\n"));
+  }
+
+  std::cout << "Actual type name: " << type_name << '\n';
+}
