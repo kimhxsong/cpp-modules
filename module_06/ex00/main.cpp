@@ -22,6 +22,7 @@
   }
     // throw exception()
   std::cout << type << '\n';
+  
   // replaceDigitWithSpace
   size_t  found;
   if ((found = istr.find("nan", 0)) != std::string::npos) {
@@ -43,6 +44,7 @@
       istr[i] = ' ';
     }
   }
+  sizeof(int);
 
   std::cout << "istr: " << istr << '\n';
   std::istringstream iss(istr);
@@ -103,7 +105,9 @@
   return TYPE;
 
 int main(int argc, char *argv[]) {
-  isValidArgument();
+  if (isValidArgument(argc, argv) == false) {
+      std::cout << "print"
+  }
 
 
   return 0;

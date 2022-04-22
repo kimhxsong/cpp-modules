@@ -10,14 +10,11 @@ class A {
    ~A() {}
 };
 
-class D1 : public A {
-  void f() {}
-};
+class D1 : public A {};
 
 class VA {
  public:
   virtual ~VA() {}
-  virtual void f() {}
 };
 
 class D2 : public VA {};
@@ -57,10 +54,10 @@ int main() {
 
 
     VA *a1 = dynamic_cast<VA*>(new VA);
-    std::cout << **(long****)a1 << std::endl;
+    std::cout << *(void***)a1 << std::endl;
 
-    VA *p = (new D2);
-    std::cout << **(long****)p << std::endl;
+    VA *p = dynamic_cast<VA*>(new VA);
+    std::cout << *(void***)p << std::endl;
 
   //   VA *a2 = new VA;
   //   VA a3;
