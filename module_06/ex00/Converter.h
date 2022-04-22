@@ -17,6 +17,6 @@ class Converter {
   int expected_type_;
   int type_;
   char ch;
-}
+};
 
 #endif  // CONVERTER_H_

@@ -1,29 +1,111 @@
 #include <iostream>
 #include <limits.h>
-
+#include <sstream>
+#include <string>
 #include "Converter.h"
 
+enum eType {
+  TYPE_CHAR,
+  TYPE_INT,
+  TYPE_FLOAT,
+  TYPE_DOUBLE,
+  TYPE_INVALID
+};
 
-  try {
-    validateArg(argc, argv);
-  } catch (const std::string &s) {
-    std::cout << "Error: " << s << '\n';
-  }
+int detectType(const std::string& str) {
+  std::istringstream iss(str);
+  int type;
+  bool bDotFound = false;
+  char ch;
 
-  try {
-    if (istr.length() == 1) {
-      if (std::isprint(istr[i]) == true) {
-        return TYPE_CH;
-      }
-      throw "invalid char literal";
+  while (true) {
+    iss >> std::skipws >> ch;
+    if (ch == '+' || ch == '-') {
+      iss >> ch;
     }
-  } catch {
-    std::cout 
+    std::cout << iss.str() << '\n';
+    if (iss.str() == "nan" || iss.str() == "nanf") {
+      std::cout << "nan\n";
+      return 0;
+    }
+
+    if (iss.str() == "inf" || iss.str() == "inff") {
+      std::cout << "inf\n";
+      return 0;
+    }
+    break;
   }
-    // throw exception()
-  std::cout << type << '\n';
-  
-  // replaceDigitWithSpace
+  return 0;
+}
+
+// int detectType(const std::string& str) {
+//   std::istringstream iss(str);
+//   int type;
+//   bool bDotFound = false;
+//   char ch;
+
+//   type = TYPE_INT;
+//   while (true) {
+//     iss >> std::skipws >> ch;
+//     if (iss.eof()) break;
+
+//     switch (ch) {
+//       case '.':
+//         bDotFound = true;
+//         type = TYPE_DOUBLE;
+//         break;
+//       case 'f':
+//         if (bDotFound == true) {
+//           type = TYPE_FLOAT;
+//           break;
+//         }
+//         // Intentional fall-through
+//       default:
+//         type = TYPE_INVALID;
+//         break;
+//       }
+//   }
+//   return type;
+// }
+
+int main(int argc, char *argv[]) {
+  // if (isValidArgument(argc, argv) == false) {
+  //     std::cout << ""
+  // }
+
+  // std::cout << <<'\n';
+  double d;
+  std::istringstream iss2(argv[1]);
+
+  iss2 >> d;
+  std::cout << "d: " << d <<  '\n';
+  std::cout << iss2.good() << iss2.eof() << iss2.fail() << iss2.bad() << '\n';
+
+
+  if (argc != 2) {
+    std::cout << "Error: It takes only one argument\n";
+    return 1;
+  }
+
+  std::string istr(argv[1]);
+  if (istr.length() == 0) {
+    std::cout << "Error: The argument is empty\n";
+  }
+
+  if (istr.length() == 1) {
+    if (std::isprint(istr[0]) == true) {
+      std::cout << "char\n";
+      return 0;
+    } else {
+      std::cout << "Error: Non displayable characters shouldn’t be used as inputs\n";
+      return 1;
+    }
+  }
+  std::cout << "'" << istr << "'" << '\n';
+
+  int type = detectType(istr);
+  std::cout << "type: " << type << '\n';
+
   size_t  found;
   if ((found = istr.find("nan", 0)) != std::string::npos) {
     for (size_t i = found; i < found + 3; ++i) {
@@ -44,69 +126,46 @@
       istr[i] = ' ';
     }
   }
-  sizeof(int);
+  std::cout << "'" << istr << "'" << '\n';
 
-  std::cout << "istr: " << istr << '\n';
+
+
   std::istringstream iss(istr);
   char ch;
 
-  // detectLiteralType()
 
-
-  // if (iss.eof()) {
-  //   return TYPE_INT;
-  // }
-
-  // if (ch == '.') {
-  //   iss >> std::skipws >> ch;
-  //   if (iss.eof()) {
-  //     return TYPE_DOUBLE;
-  // }
-  // }
-
-  // if (ch == 'f') {
-  //   iss >> std::skipws >> ch;
-  //   if (iss.eof()) {
-  //     return TYPE_FLOAT;
-  //   }
-  } 
-
-  char ch;
-  bool bDotFound = false;
-  
-  type = TYPE_INT;
-  iss >> std::skipws >> ch;
+  iss >> ch;
 
   if (ch == '+' || ch == '-') {
       iss >> std::skipws >> ch;
   }
 
-  while (true) {
-    iss >> std::skipws >> ch;
-    if (iss.eof()) break;
-
-    switch (ch) {
-      case '.':
-        bDotFound = true;
-        type = TYPE_DOUBLE;
-        break;
-      case 'f':
-        if (bDotFound == true) {
-          type = TYPE_FLOAT;
-          break;
-        }
-        // Intentional fall-through
-      default:
-        // throw() exception;
-        break;
-    }
+  if (iss.eof()) {
+    std::cout << "int\n";
+    return 0;
   }
-  SC_OPEN_MAX_
-  return TYPE;
 
-int main(int argc, char *argv[]) {
-  if (isValidArgument(argc, argv) == false) {
-      std::cout << "print"
+  if (ch == '.') {
+    iss >> std::skipws >> ch;
+    if (iss.eof()) {
+      std::cout << "double\n";
+      return 0;
+    }
+  } else {
+    std::cout << "Error: Invalid Literal\n";
+    return 1;
+  }
+
+  if (ch == 'f') {
+    iss >> std::skipws >> ch;
+  }
+
+  if (iss.eof()) {
+    std::cout << "float\n";
+    return 0;
+  } else {
+    std::cout << "Error: Invalid Literal\n";
+    return 1;
   }
 
 
