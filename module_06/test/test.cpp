@@ -20,15 +20,15 @@ int
 //     TYPE_LITERAL_DOUBLE
 //   };
 
-//   Converter();
-//   Converter(const Converter& other);
+//   Convert();
+//   Convert(const Convert& other);
 
-//   ~Converter();
+//   ~Convert();
 
 //   void detectType();
 //   void execute()
 
-//   operator=(const Converter& other);
+//   operator=(const Convert& other);
 
 //  private:
 //   double dnum_;
@@ -38,7 +38,7 @@ int
 //   char  ch_;
 // };
 
-// int Converter::detectType(const std::string &input) {
+// int Convert::detectType(const std::string &input) {
 //   if (input.size() <= 1) {
 //     return TYPE_LITERAL_CHAR;
 //   }
@@ -65,12 +65,12 @@ void validateArg(int argc, char *argv[]) {
 
 int main(int argc, char* argv[]) {
   try {
-    if (converter::isValidArgument(argc, argv) == -1)
+    if (Convert::isValidArgument(argc, argv) == -1)
       throw();
 
-    Converter converter(argv[1]);
-    // converter.getExpectedType()
-    converter.execute(); // 상태관리.
+    Convert Convert(argv[1]);
+    // Convert.getExpectedType()
+    Convert.execute(); // 상태관리.
     {
       type = castFromType(type); //성공함. 예외 안던짐.
       void *detected_type = 
@@ -135,11 +135,11 @@ int main(int argc, char* argv[]) {
         }
         type = (++type) % 4
       }
-    // converter.display();
+    // Convert.display();
   } catch (...) {
     return -1;
   }
-  converter.display();
+  Convert.display();
   return 0;
 
   try {
