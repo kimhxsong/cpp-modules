@@ -8,91 +8,49 @@
 #include <sstream>
 #include <string>
 
-int Convert::detectType(const char* str) {
-  int type;
-  if (std::strlen(str) == 1) {
-    if (std::isprint(*str) == true) {
-      return TYPE_CHAR;
-    } else {
-      std::cout << "Error: Non displayable character shouldn't be used as inputs\n";
-      return -1;
-    }
-  }
-  bool bDotFound = false;
 
-  std::stringstream sstrm(str);
-  std::string trimmed_str;
+bool bDotFound = false;
+bool bFFound = false;
 
-  sstrm >> trimmed_str;
-  char ch;
-  sstrm >> ch;
-  if (sstrm.eof() == false) {
-    std::cout << "Error: Invalid Argument\n";
-    return -1; 
-  }
+bool Convert::isSign(char ch) {
+  return (ch == '+' || ch == '-');
+}
 
-  if (trimmed_str.find('.', 0) != std::string::npos) {
+int Convert::detectType(const std::string& str) {
+  size_t idx = 0;
+  size_t found_dot;
+  size_t found_f;
+
+  idx += (str.length() != 1) && isSign(str[i]);
+
+  // if (str.find("nan", idx) != std::
+  if ((found_dot = str.find('.', idx)) != bDotFound) {
     bDotFound = true;
   }
-
-  bool bSuffixFound;
-  if (trimmed_str[trimmed_str.length() - 1] == 'f') {
-    if (bDotFound == false) {
-      return -1;
+  found_f = str.find('f', found_dot);
+  if (bDotFound == true && found_f != std::string::npos) {
+    if (found_f != (str.length() - 1)) {
+      return -1; // wrong format
     }
-    trimmed_str.erase(trimmed_str.length() - 1, 1);
-    bSuffixFound = true;
-  }
-
-  sstrm.clear();
-  sstrm.str(trimmed_str);
-  double dnum;
-  sstrm >> dnum;
-  if (!sstrm || sstrm.eof() == false) {
-    sstrm >> ch;
-    return -1;
-  }
-
-  if (bSuffixFound == true) {
-    return TYPE_FLOAT;
+    bFFound = true;
   }
 
   if (bDotFound == true) {
-    return TYPE_DOUBLE;
-  }
-
-  return TYPE_INT;
-}
-
-void executeFromChar(char ch) {
-  int i = static_cast<char>(i);
-  double d = static_cast<double>(i);
-  float f = static_cast<float>(i);
-  std::cout << "char: '" << ch << "'\n";
-  std::cout << "int: " << i << '\n';
-  std::cout << "float: " << f << "f\n";
-  std::cout << "double: " << d << '\n';
-}
-
-void executeFromInt(int i) {
-  double d;
-  float f;
-  char c;
-
-  c = static_cast<char>(i);
-  d = static_cast<double>(i);
-  f = static_cast<float>(i);
-  std::cout.flags(std::ios_base::showpoint | std::ios_base::fixed);
-  {
-    if (std::isprint(c)) {
-      std::cout << "char: " << c << '\n';
-    } else {
-      std::cout << "char: " << "Non displayable\n";
+    for (size_t start = idx; i < found_dot; ++start) {
+      if (std::isdigit(str[start]) == false) {
+        return -1; // wrong format
+      }
     }
   }
-  std::cout << "int: " << i << '\n';
-  std::cout << std::setprecision(1) << "float: " << f << "f\n";
-  std::cout << std::setprecision(1) << "double: " << d << '\n';
+
+  if (bFFound == true) {
+    for (size_t start = found_dot + 1; start < found_f; ++start) {
+      if (std::isdigit(str[start]) == false) {
+        return -1;
+      }
+    }
+    str.erase(found_f, 1);
+  }
 }
 
 void executeFromFloat(float f) {
