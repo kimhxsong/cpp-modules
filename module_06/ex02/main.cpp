@@ -1,4 +1,6 @@
+#include <exception>
 #include <iostream>
+#include <string>
 
 #include "Base.h"
 
@@ -11,14 +13,14 @@ void do_something() {
 
   try {
     identify(NULL);
-  } catch (const std::string& s) {
-    std::cout << s;
+  } catch (const std::exception& e) {
+    std::cout << "Error: " << e.what() << '\n';
   }
 
   try {
     identify(empty);
-  } catch (const std::string& s) {
-    std::cout << s;
+  } catch (const std::exception& e) {
+    std::cout << "Error: " << e.what() << '\n';
   }
 
   delete test;
@@ -26,6 +28,6 @@ void do_something() {
 
 int main() {
   do_something();
-  system("leaks test");
+  // system("leaks test");
   return 0;
 }

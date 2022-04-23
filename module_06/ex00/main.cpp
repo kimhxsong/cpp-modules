@@ -1,12 +1,9 @@
+#include <exception>
 #include <iostream>
-#include <limits.h>
-#include <sstream>
-#include <string>
+
 #include "Convert.h"
 
-
 int main(int argc, char *argv[]) {
-  Convert Convert;
   if (argc != 2) {
     std::cout << "Error: It takes only one argument\n";
     return 1;
@@ -17,11 +14,13 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  std::string istr(argv[1]);
-  int type = Convert.detectType(istr.c_str());
-  if (type == -1) {
-    std::cout << "Error\n";
+  try {
+    Convert convert(argv[1]);
+    convert.print();
+  } catch (const std::exception& e) {
+    std::cout << "Error: " << e.what() << '\n';
+    return 1;
   }
-  Convert.execute(type, istr);
+
   return 0;
 }

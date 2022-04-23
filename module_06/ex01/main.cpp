@@ -1,6 +1,6 @@
 #include <cstdint>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 
 #include "Data.h"
 
@@ -18,7 +18,7 @@ static std::ios_base::fmtflags getPresetFlags(int type) {
   return 0;
 }
 
-int main(int argc, char* argv[]) {
+int main() {
   Data data = {123412345.1234512345, 123412345.1234512345, 10, 'a'};
   uintptr_t raw = serializie(&data);
   Data* p_data = deserialize(raw);

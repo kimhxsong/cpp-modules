@@ -3,7 +3,7 @@ NAME = test
 CC = c++
 CXXFLAGS = -g -Wall -Wextra -Werror -pedantic -std=c++98
 
-BASENAMES = main.cpp Data
+BASENAMES = main Data
 
 SRCS = $(addsuffix .cpp, $(BASENAMES))
 

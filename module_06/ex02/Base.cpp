@@ -3,6 +3,7 @@
 #include <ctime>
 #include <iostream>
 #include <random>
+#include <exception>
 
 #include "A.h"
 #include "B.h"
@@ -33,7 +34,7 @@ void identify(Base* p) {
   C *c;
 
   if (p == NULL) {
-    throw (std::string("Error: (Base*)p is NULL\n"));
+    throw std::logic_error("invalid argument");
   }
   if ((a = dynamic_cast<A*>(p)) != NULL) {
     type_name = "A";
@@ -54,20 +55,21 @@ void identify(Base& p) {
       p = dynamic_cast<A&>(p);
       type_name = "A";
       break;
-    } catch (const std::exception& e) {}
+    } catch (const std::bad_cast& e) {}
 
     try {
       p = dynamic_cast<B&>(p);
       type_name = "B";
       break;
-    } catch (const std::exception& e) {}
+    } catch (const std::bad_cast& e) {}
 
     try {
       p = dynamic_cast<C&>(p);
+      type_name = "C";
       break;
-    } catch (const std::exception& e) {}
+    } catch (const std::bad_cast& e) {}
 
-    throw (std::string("Error: Can't identify\n"));
+    throw std::logic_error("invalid argument");
   }
 
   std::cout << "Actual type name: " << type_name << '\n';

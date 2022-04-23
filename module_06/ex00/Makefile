@@ -3,7 +3,7 @@ NAME = convert
 CC = c++
 CXXFLAGS = -g -Wall -Wextra -Werror -pedantic -std=c++98
 
-BASENAMES = main
+BASENAMES = main Convert
 
 SRCS = $(addsuffix .cpp, $(BASENAMES))
 
@@ -14,10 +14,10 @@ OBJS = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(BASENAMES)))
 all: $(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
-	@$(CC) $(CXXFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
+	@$(CC) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJDIR)/%.o: %.cpp
-	@$(CC) $(INCLUDES) $(CXXFLAGS) -c $< -o $@
+	@$(CC) $(CXXFLAGS) -c $< -o $@
 
 $(OBJS): | $(OBJDIR)
 $(OBJDIR):
@@ -25,7 +25,7 @@ $(OBJDIR):
 
 .PHONY: clean
 clean:
-	@$(RM) $(OBJDIR)
+	@$(RM) -r $(OBJDIR) test
 
 .PHONY: fclean
 fclean: clean
