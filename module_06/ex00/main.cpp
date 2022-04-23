@@ -1,7 +1,16 @@
+#include <cctype>
+
 #include <exception>
 #include <iostream>
 
 #include "Convert.h"
+
+static void toLowerString(std::string& input) {
+  size_t len = input.length();
+  for (size_t i = 0; i < len; ++i) {
+      input[i] = std::tolower(input[i]);
+  }
+}
 
 int main(int argc, char *argv[]) {
   if (argc != 2) {
@@ -14,8 +23,11 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  std::string input(argv[1]);
+  toLowerString(input);
+
   try {
-    Convert convert(argv[1]);
+    Convert convert(input);
     convert.print();
   } catch (const std::exception& e) {
     std::cout << "Error: " << e.what() << '\n';
