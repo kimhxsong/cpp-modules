@@ -18,7 +18,7 @@ class MutantStack : public std::stack<T, C> {
                    const_reverse_iterator;
 
   MutantStack()
-    : std::stack<T>() {}
+    : std::stack<T, C>() {}
 
   MutantStack(const MutantStack& other) {
     if (this != &other) this->c = other.c;
